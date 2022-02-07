@@ -1,0 +1,30 @@
+<app-differ-nav-bar></app-differ-nav-bar>
+
+<div class="row mt-5 title">
+    <div class="col-md-6 mx-auto">
+        <div class="card rounded-20">
+            <div class="card-header">
+                <h3 class="mb-0">Enter your email address to create your account</h3>
+            </div>
+            <div class="card-body">
+                
+                <form [formGroup]="signupVerifyForm" (ngSubmit)="handleSubmit()" class="form">
+                    
+                    <div class="form-group rounded-15">
+                        <label for="">Enter the code that was sent to your email address</label>
+                        
+                        <input type="number" class="form-control" formControlName="emailOTP" name="emailOTP" required>
+                    </div>
+                     <div *ngIf="submitted && signupVerifyFormHas.emailOTP?.errors">
+                         <small *ngIf="signupVerifyFormHas.emailOTP.errors?.required" class="text-danger" > OTP is Required </small>
+                         <small *ngIf="signupVerifyFormHas.emailOTP.errors?.min" class="text-danger" > OTP need to be 6 digit </small>
+                         <small *ngIf="signupVerifyFormHas.emailOTP.errors?.max" class="text-danger" > OTP need to be 6 digit</small>
+                     </div>
+                    <div class="">  
+                        <a routerLink="/differ-customer-information" class="text-center float-right">didn't receive your code? </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

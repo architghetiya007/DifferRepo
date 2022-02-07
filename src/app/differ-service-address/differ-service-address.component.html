@@ -1,0 +1,31 @@
+<app-differ-nav-bar></app-differ-nav-bar>
+
+
+<div class="row mt-5 title">
+    <div class="col-md-6 mx-auto">
+        <div class="card rounded-20">
+            <div class="card-header">
+                <h3 class="mb-0">Enter your address to determine service</h3>
+            </div>
+            <div class="card-body">
+                
+                <form [formGroup]="serviceAddressForm" (ngSubmit)="handleSubmit()" class="form">
+                    
+                    <div class="form-group rounded-15">
+                        <label for="">Enter Your Address</label>
+                        
+                        <input type="text" class="form-control" formControlName="address" name="address" required>
+                    </div>
+                     <div *ngIf="submitted && serviceAddressFormHas.address?.errors">
+                         <small *ngIf="serviceAddressFormHas.address.errors?.required" class="text-danger" > Address is Required </small>
+                         <small *ngIf="serviceAddressFormHas.address.errors?.minlength" class="text-danger" > Address between 5 to 70 characters </small>
+                         <small *ngIf="serviceAddressFormHas.address.errors?.maxlength" class="text-danger" > Address between 5 to 70 characters</small>
+                     </div>
+                    <div class="">
+                        <button type="submit" class="btn btn-success float-right">Check Service</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
