@@ -11,15 +11,15 @@
 </div>
 
 <div class="row center-service-list ">
-    <div class="col-4" *ngFor="let item of serviceList">
+    <div class="col-4 mb-4  " *ngFor="let element of serviceItemList">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
               <h5 class="card-title">Service Title</h5>
               <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">- list of service options.</p>
-              <p class="card-text">- this is another one.</p>
+              <p class="card-text">- {{ element.item.name }}.</p>
+              <p class="card-text">- {{ element.item.status }}.</p>
               <p class="card-text">- here is a feature included.</p>
-              <button type="button" (click)="handleServiceClick()" class="card-link btn btn-info">Order</button>
+              <button type="button" (click)="handleServiceClick(element)" class="card-link btn btn-info">Order</button>
             </div>
           </div>
     </div>

@@ -37,13 +37,8 @@ export class DifferServiceAddressComponent implements OnInit {
     if (this.serviceAddressForm.invalid) {
       return;
     }
-    let reqData = {
-      address: this.serviceAddressForm.value.address,
-    }
+    localStorage.setItem("address",this.serviceAddressForm.value.address);
     this.router.navigate(['/differ-service-list']);
-
-
-    console.log(reqData,"address form value...");
   }
 
 }
