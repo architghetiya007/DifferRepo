@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DifferCustomerInformationComponent } from './differ-customer-information/differ-customer-information.component';
+import { DifferMyProfileComponent } from './differ-my-profile/differ-my-profile.component';
 import { DifferServiceAddressComponent } from './differ-service-address/differ-service-address.component';
 import { DifferServiceListComponent } from './differ-service-list/differ-service-list.component';
 import { DifferSignupVerifyComponent } from './differ-signup-verify/differ-signup-verify.component';
@@ -34,6 +35,11 @@ const routes: Routes = [
     path: 'differ-customer-information',
     component: DifferCustomerInformationComponent,
   },
+  {
+    path: 'differ-my-profile',
+    component: DifferMyProfileComponent,
+  },
+
 ];
 
 @NgModule({

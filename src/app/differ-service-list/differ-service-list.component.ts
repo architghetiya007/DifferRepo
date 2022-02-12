@@ -17,12 +17,13 @@ import swal from 'sweetalert2';
   styleUrls: ['./differ-service-list.component.css']
 })
 export class DifferServiceListComponent implements OnInit {
-  public address : any = "123 Main street, A1B 2C3, NB, Canada";
+  public address : any = "";
   public serviceList: any = [1,2,3];
 
   constructor(private router: Router, private differServiceList:DifferServiceList) { }
 
   ngOnInit(): void {
+    this.address = localStorage.getItem('address');
     this.getItemList();   
   }
 

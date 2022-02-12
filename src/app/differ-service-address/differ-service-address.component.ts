@@ -24,7 +24,7 @@ export class DifferServiceAddressComponent implements OnInit {
 
   ngOnInit(): void {
     this.serviceAddressForm = new FormGroup({
-      address: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70) ]),
+      address: new FormControl('', [Validators.required ]),
     });
   }
 
@@ -37,6 +37,8 @@ export class DifferServiceAddressComponent implements OnInit {
     if (this.serviceAddressForm.invalid) {
       return;
     }
+    console.log(this.serviceAddressForm.value)
+    localStorage.removeItem('address') 
     localStorage.setItem("address",this.serviceAddressForm.value.address);
     this.router.navigate(['/differ-service-list']);
   }

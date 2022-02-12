@@ -40,7 +40,7 @@ export class DifferSignupVerifyComponent implements OnInit {
     let reqData = {
       email: this.signupVerifyForm.value.email,
     }
-    this.router.navigate(['/differ-signup-verify']);
+    this.router.navigate(['/differ-customer-information']);
     console.log(reqData,"address form value...");
   }
 

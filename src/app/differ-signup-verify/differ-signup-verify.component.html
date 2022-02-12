@@ -13,15 +13,17 @@
                     <div class="form-group rounded-15">
                         <label for="">Enter the code that was sent to your email address</label>
                         
-                        <input type="number" class="form-control" formControlName="emailOTP" name="emailOTP" required>
+                        <input type="number" class="form-control" formControlName="emailOTP" name="emailOTP" maxlength="6"  pattern="[1-9]{1}[0-9]{5}" required>
                     </div>
                      <div *ngIf="submitted && signupVerifyFormHas.emailOTP?.errors">
                          <small *ngIf="signupVerifyFormHas.emailOTP.errors?.required" class="text-danger" > OTP is Required </small>
                          <small *ngIf="signupVerifyFormHas.emailOTP.errors?.min" class="text-danger" > OTP need to be 6 digit </small>
                          <small *ngIf="signupVerifyFormHas.emailOTP.errors?.max" class="text-danger" > OTP need to be 6 digit</small>
                      </div>
+
                     <div class="">  
-                        <a routerLink="/differ-customer-information" class="text-center float-right">didn't receive your code? </a>
+                        <button type="submit" class="btn btn-success">Verify</button>
+                        <a routerLink="/differ-signup-verify" class="text-center float-right">didn't receive your code? </a>
                     </div>
                 </form>
             </div>

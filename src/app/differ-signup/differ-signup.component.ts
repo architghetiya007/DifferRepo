@@ -34,7 +34,7 @@ export class DifferSignupComponent implements OnInit {
   }
   
   customer : any;
-  handleSubmit() {
+  async handleSubmit() {
     this.submitted = true;
     if (this.signupForm.invalid) {
       return;
@@ -44,19 +44,18 @@ export class DifferSignupComponent implements OnInit {
       selectedId:localStorage.getItem('selectedId'),
       email: this.signupForm.value.email,
     }
-    this.differServiceList.differCreateCustomer(reqData).subscribe((result:any) => {
+    this.differServiceList.differCreateCustomer(reqData).subscribe(async (result:any) => {
       console.log(result,"result>>>>>>>>>>>>>>>>>");
       if(result['code'] == 204 ) {
         this.router.navigate(['/differ-customer-information']);
       }
       if(result['code'] == 200 ) {
         this.customer = result['data'];
+        this.router.navigate(['/differ-signup-verify']);
       }
     }, 
     (err:any) => {
       console.log(err,"error");
     });
-    this.router.navigate(['/differ-signup-verify']);
-    console.log(reqData,"address form value...");
   }
 }
