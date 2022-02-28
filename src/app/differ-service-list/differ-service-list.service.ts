@@ -16,4 +16,12 @@ export class DifferServiceList {
     return this.http.post("http://localhost:3000/api/v1/auth/chargebee-user-list",data);
   }
 
+  differSignUpVerifyOTP(data:any) {
+    return this.http.put("http://localhost:3000/api/v1/auth/verify-mail",data);
+  }
+
+  differCustomerInformation(data:any) {
+    return this.http.put("http://localhost:3000/api/v1/auth/chargebee-save-user-detail",data);
+  }
+
 }

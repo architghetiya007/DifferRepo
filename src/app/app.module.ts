@@ -17,6 +17,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from "@angular/material/menu";
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { DifferServiceAddressComponent } from './differ-service-address/differ-service-address.component';
 import { DifferServiceListComponent } from './differ-service-list/differ-service-list.component';
 import { DifferSignupComponent } from './differ-signup/differ-signup.component';
@@ -24,6 +26,8 @@ import { DifferSignupVerifyComponent } from './differ-signup-verify/differ-signu
 import { DifferCustomerInformationComponent } from './differ-customer-information/differ-customer-information.component';
 import { DifferNavBarComponent } from './differ-nav-bar/differ-nav-bar.component';
 import { DifferMyProfileComponent } from './differ-my-profile/differ-my-profile.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +38,7 @@ import { DifferMyProfileComponent } from './differ-my-profile/differ-my-profile.
     DifferCustomerInformationComponent,
     DifferNavBarComponent,
     DifferMyProfileComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,6 +53,8 @@ import { DifferMyProfileComponent } from './differ-my-profile/differ-my-profile.
     MatInputModule,
     MatToolbarModule,
     MatMenuModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     MatSortModule,
     MatPaginatorModule,
     MatTableModule,

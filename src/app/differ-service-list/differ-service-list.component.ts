@@ -23,13 +23,13 @@ export class DifferServiceListComponent implements OnInit {
   constructor(private router: Router, private differServiceList:DifferServiceList) { }
 
   ngOnInit(): void {
-    this.address = localStorage.getItem('address');
+    this.address = sessionStorage.getItem('address');
     this.getItemList();   
   }
 
   handleServiceClick(data:any) {
     // console.log("data>>>>>>>>>>>>>>>>>>>",data);
-    localStorage.setItem("selectedId",data.item.id);
+    sessionStorage.setItem("selectedId",data.item.id);
     this.router.navigate(['/differ-signup']);
   }
 

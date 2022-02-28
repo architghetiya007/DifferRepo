@@ -4,22 +4,21 @@
     <div class="col-md-6 mx-auto">
         <div class="card rounded-20">
             <div class="card-header">
-                <h3 class="mb-0">Enter your email address to create your account</h3>
+                <h3 class="mb-0">Enter the code that was sent to your email address</h3>
             </div>
-            <div class="card-body">
+            <div class="card-body text-center">
                 
                 <form [formGroup]="signupVerifyForm" (ngSubmit)="handleSubmit()" class="form">
-                    
-                    <div class="form-group rounded-15">
-                        <label for="">Enter the code that was sent to your email address</label>
-                        
-                        <input type="number" class="form-control" formControlName="emailOTP" name="emailOTP" maxlength="6"  pattern="[1-9]{1}[0-9]{5}" required>
+                    <div class="row">
+                        <div class="form-group col-sm-2" *ngFor="let input of formInput;  index as i">
+                            <input type="text" #formRow class="form-control" formControlName="{{input}}" maxlength="1" name="emailOTP" (keyup)="keyUpEvent($event, i)" required>
+                        </div>
                     </div>
-                     <div *ngIf="submitted && signupVerifyFormHas.emailOTP?.errors">
+                     <!-- <div *ngIf="submitted && signupVerifyFormHas.emailOTP?.errors">
                          <small *ngIf="signupVerifyFormHas.emailOTP.errors?.required" class="text-danger" > OTP is Required </small>
                          <small *ngIf="signupVerifyFormHas.emailOTP.errors?.min" class="text-danger" > OTP need to be 6 digit </small>
                          <small *ngIf="signupVerifyFormHas.emailOTP.errors?.max" class="text-danger" > OTP need to be 6 digit</small>
-                     </div>
+                     </div> -->
 
                     <div class="">  
                         <button type="submit" class="btn btn-success">Verify</button>

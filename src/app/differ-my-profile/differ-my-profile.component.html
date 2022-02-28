@@ -10,39 +10,80 @@
                     <div class="card-body">
                         
                         <form [formGroup]="myProfileForm" (ngSubmit)="handleSubmit1()" class="form">
-                            
+        
                             <div class="form-group rounded-15">
-                                <label for="">Name</label>
-                                
-                                <input type="text" class="form-control" formControlName="name" name="name" required>
-                            </div>
-                             <div *ngIf="submitted && myProfileFormHas.name?.errors">
-                                 <small *ngIf="myProfileFormHas.name.errors?.required" class="text-danger" > Name is Required </small>
-                                 <small *ngIf="myProfileFormHas.name.errors?.minlength" class="text-danger" > Name between 5 to 30 characters </small>
-                                 <small *ngIf="myProfileFormHas.name.errors?.maxlength" class="text-danger" > Name between 5 to 30 characters</small>
+                                <mat-form-field class="full-width">
+                                    <input matInput placeholder="First Name" formControlName="firstName" required>
+                                    <mat-error *ngIf="submitted1 && myProfileFormHas.firstName?.errors">
+                                        <mat-error class="error-message" *ngIf="myProfileFormHas.firstName.errors?.required">
+                                            First Name is Required </mat-error>
+                                        <mat-error class="error-message" *ngIf="myProfileFormHas.firstName.errors?.minlength">
+                                            First Name between 3 to 30 characters</mat-error>
+                                        <mat-error class="error-message" *ngIf="myProfileFormHas.firstName.errors?.maxlength">
+                                            First Name between 3 to 30 characters</mat-error>
+                                    </mat-error>
+                                </mat-form-field>
                             </div>
         
                             <div class="form-group rounded-15">
-                                <label for="">Password</label>
-                                
-                                <input type="text" class="form-control" formControlName="password" name="name" required>
+                                <mat-form-field class="full-width">
+                                    <input matInput placeholder="Last Name" formControlName="lastName" required>
+                                    <mat-error *ngIf="submitted1 && myProfileFormHas.lastName?.errors">
+                                        <mat-error class="error-message" *ngIf="myProfileFormHas.lastName.errors?.required">
+                                            Last Name is Required </mat-error>
+                                        <mat-error class="error-message" *ngIf="myProfileFormHas.lastName.errors?.minlength">
+                                            Last Name between 3 to 30 characters</mat-error>
+                                        <mat-error class="error-message" *ngIf="myProfileFormHas.lastName.errors?.maxlength">
+                                            Last Name between 3 to 30 characters</mat-error>
+                                    </mat-error>
+                                </mat-form-field>
                             </div>
-                             <div *ngIf="submitted && myProfileFormHas.password?.errors">
-                                 <small *ngIf="myProfileFormHas.password.errors?.required" class="text-danger" > Password is Required </small>
-                                 <small *ngIf="myProfileFormHas.password.errors?.minlength" class="text-danger" > Password between 5 to 15 characters </small>
-                                 <small *ngIf="myProfileFormHas.password.errors?.maxlength" class="text-danger" > Password between 5 to 15 characters</small>
-                             </div>
         
-                             <div class="form-group rounded-15">
-                                <label for="">Service Address</label>
-                                
-                                <input type="text" class="form-control" formControlName="serviceAddress" name="name" required>
+                            <div class="form-group rounded-15">
+                                <mat-form-field class="full-width">
+                                    <input type="password" matInput placeholder="password" formControlName="password"
+                                        name="password" required>
+                                    <mat-error *ngIf="submitted1 && myProfileFormHas.password?.errors">
+                                        <mat-error class="error-message" *ngIf="myProfileFormHas.password.errors?.required">
+                                            Password is Required </mat-error>
+                                        <mat-error class="error-message" *ngIf="myProfileFormHas.password.errors?.minlength">
+                                            Password between 5 to 15 characters</mat-error>
+                                        <mat-error class="error-message" *ngIf="myProfileFormHas.password.errors?.maxlength">
+                                            Password between 5 to 15 characters</mat-error>
+                                    </mat-error>
+                                </mat-form-field>
                             </div>
-                             <div *ngIf="submitted && myProfileFormHas.serviceAddress?.errors">
-                                 <small *ngIf="myProfileFormHas.serviceAddress.errors?.required" class="text-danger" > Service Address is Required </small>
-                                 <small *ngIf="myProfileFormHas.serviceAddress.errors?.minlength" class="text-danger" > Service Address between 5 to 70 characters </small>
-                                 <small *ngIf="myProfileFormHas.serviceAddress.errors?.maxlength" class="text-danger" > Service Address between 5 to 70 characters</small>
-                             </div>
+        
+                            <div class="form-group rounded-15">
+                                <mat-form-field class="full-width">
+                                    <input matInput placeholder="serviceAddress" formControlName="serviceAddress"
+                                        name="serviceAddress" required>
+                                    <mat-error *ngIf="submitted1 && myProfileFormHas.serviceAddress?.errors">
+                                        <mat-error class="error-message"
+                                            *ngIf="myProfileFormHas.serviceAddress.errors?.required">Service Address
+                                            is Required </mat-error>
+                                        <mat-error class="error-message"
+                                            *ngIf="myProfileFormHas.serviceAddress.errors?.minlength">Service Address
+                                            between 5 to 70 characters</mat-error>
+                                        <mat-error class="error-message"
+                                            *ngIf="myProfileFormHas.serviceAddress.errors?.maxlength">Service Address
+                                            between 5 to 70 characters</mat-error>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+        
+                            <div class="form-group rounded-15">
+                                <mat-form-field class="full-width">
+                                    <input matInput [matDatepicker]="picker" placeholder="Your birthday"
+                                        formControlName="birthday" required>
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                    <mat-error *ngIf="submitted1 && myProfileFormHas.birthday?.errors">
+                                        <mat-error *ngIf="myProfileFormHas.birthday.errors?.required">Birth Date is Required
+                                        </mat-error>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
         
                             <div class="">
                                 <button type="submit" class="btn btn-success float-left">Next</button>
@@ -69,7 +110,7 @@
                                 
                                 <input type="text" class="form-control" formControlName="name" name="name" required>
                             </div>
-                             <div *ngIf="submitted && mySubscriptionFormHas.name?.errors">
+                             <div *ngIf="submitted2 && mySubscriptionFormHas.name?.errors">
                                  <small *ngIf="mySubscriptionFormHas.name.errors?.required" class="text-danger" > Name is Required </small>
                                  <small *ngIf="mySubscriptionFormHas.name.errors?.minlength" class="text-danger" > Name between 5 to 30 characters </small>
                                  <small *ngIf="mySubscriptionFormHas.name.errors?.maxlength" class="text-danger" > Name between 5 to 30 characters</small>
@@ -80,7 +121,7 @@
                                 
                                 <input type="text" class="form-control" formControlName="password" name="name" required>
                             </div>
-                             <div *ngIf="submitted && mySubscriptionFormHas.password?.errors">
+                             <div *ngIf="submitted2 && mySubscriptionFormHas.password?.errors">
                                  <small *ngIf="mySubscriptionFormHas.password.errors?.required" class="text-danger" > Password is Required </small>
                                  <small *ngIf="mySubscriptionFormHas.password.errors?.minlength" class="text-danger" > Password between 5 to 15 characters </small>
                                  <small *ngIf="mySubscriptionFormHas.password.errors?.maxlength" class="text-danger" > Password between 5 to 15 characters</small>
@@ -91,7 +132,7 @@
                                 
                                 <input type="text" class="form-control" formControlName="serviceAddress" name="name" required>
                             </div>
-                             <div *ngIf="submitted && mySubscriptionFormHas.serviceAddress?.errors">
+                             <div *ngIf="submitted2 && mySubscriptionFormHas.serviceAddress?.errors">
                                  <small *ngIf="mySubscriptionFormHas.serviceAddress.errors?.required" class="text-danger" > Service Address is Required </small>
                                  <small *ngIf="mySubscriptionFormHas.serviceAddress.errors?.minlength" class="text-danger" > Service Address between 5 to 70 characters </small>
                                  <small *ngIf="mySubscriptionFormHas.serviceAddress.errors?.maxlength" class="text-danger" > Service Address between 5 to 70 characters</small>
@@ -122,7 +163,7 @@
                                 
                                 <input type="text" class="form-control" formControlName="name" name="name" required>
                             </div>
-                             <div *ngIf="submitted && MyNetworkFormHas.name?.errors">
+                             <div *ngIf="submitted3 && MyNetworkFormHas.name?.errors">
                                  <small *ngIf="MyNetworkFormHas.name.errors?.required" class="text-danger" > Name is Required </small>
                                  <small *ngIf="MyNetworkFormHas.name.errors?.minlength" class="text-danger" > Name between 5 to 30 characters </small>
                                  <small *ngIf="MyNetworkFormHas.name.errors?.maxlength" class="text-danger" > Name between 5 to 30 characters</small>
@@ -133,7 +174,7 @@
                                 
                                 <input type="text" class="form-control" formControlName="password" name="name" required>
                             </div>
-                             <div *ngIf="submitted && MyNetworkFormHas.password?.errors">
+                             <div *ngIf="submitted3 && MyNetworkFormHas.password?.errors">
                                  <small *ngIf="MyNetworkFormHas.password.errors?.required" class="text-danger" > Password is Required </small>
                                  <small *ngIf="MyNetworkFormHas.password.errors?.minlength" class="text-danger" > Password between 5 to 15 characters </small>
                                  <small *ngIf="MyNetworkFormHas.password.errors?.maxlength" class="text-danger" > Password between 5 to 15 characters</small>
@@ -144,7 +185,7 @@
                                 
                                 <input type="text" class="form-control" formControlName="serviceAddress" name="name" required>
                             </div>
-                             <div *ngIf="submitted && MyNetworkFormHas.serviceAddress?.errors">
+                             <div *ngIf="submitted3 && MyNetworkFormHas.serviceAddress?.errors">
                                  <small *ngIf="MyNetworkFormHas.serviceAddress.errors?.required" class="text-danger" > Service Address is Required </small>
                                  <small *ngIf="MyNetworkFormHas.serviceAddress.errors?.minlength" class="text-danger" > Service Address between 5 to 70 characters </small>
                                  <small *ngIf="MyNetworkFormHas.serviceAddress.errors?.maxlength" class="text-danger" > Service Address between 5 to 70 characters</small>

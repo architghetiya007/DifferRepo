@@ -7,41 +7,95 @@
                 <h3 class="mb-0">Customer Information</h3>
             </div>
             <div class="card-body">
-                
                 <form [formGroup]="InformationForm" (ngSubmit)="handleSubmit()" class="form">
-                    
+
                     <div class="form-group rounded-15">
-                        <label for="">Name</label>
-                        
-                        <input type="text" class="form-control" formControlName="name" name="name" required>
-                    </div>
-                     <div *ngIf="submitted && informationFormHas.name?.errors">
-                         <small *ngIf="informationFormHas.name.errors?.required" class="text-danger" > Name is Required </small>
-                         <small *ngIf="informationFormHas.name.errors?.minlength" class="text-danger" > Name between 5 to 30 characters </small>
-                         <small *ngIf="informationFormHas.name.errors?.maxlength" class="text-danger" > Name between 5 to 30 characters</small>
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Email" formControlName="email" required>
+                            <mat-error *ngIf="submitted && informationFormHas.email?.errors">
+                                <mat-error class="error-message" *ngIf="informationFormHas.email.errors?.required">
+                                    Email is Required </mat-error>
+                                <mat-error class="error-message" *ngIf="informationFormHas.email.errors?.minlength">
+                                    Email between 5 to 30 characters</mat-error>
+                                <mat-error class="error-message" *ngIf="informationFormHas.email.errors?.maxlength">
+                                    Email between 5 to 30 characters</mat-error>
+                            </mat-error>
+                        </mat-form-field>
                     </div>
 
                     <div class="form-group rounded-15">
-                        <label for="">Password</label>
-                        
-                        <input type="text" class="form-control" formControlName="password" name="name" required>
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="First Name" formControlName="firstName" required>
+                            <mat-error *ngIf="submitted && informationFormHas.firstName?.errors">
+                                <mat-error class="error-message" *ngIf="informationFormHas.firstName.errors?.required">
+                                    First Name is Required </mat-error>
+                                <mat-error class="error-message" *ngIf="informationFormHas.firstName.errors?.minlength">
+                                    First Name between 3 to 30 characters</mat-error>
+                                <mat-error class="error-message" *ngIf="informationFormHas.firstName.errors?.maxlength">
+                                    First Name between 3 to 30 characters</mat-error>
+                            </mat-error>
+                        </mat-form-field>
                     </div>
-                     <div *ngIf="submitted && informationFormHas.password?.errors">
-                         <small *ngIf="informationFormHas.password.errors?.required" class="text-danger" > Password is Required </small>
-                         <small *ngIf="informationFormHas.password.errors?.minlength" class="text-danger" > Password between 5 to 15 characters </small>
-                         <small *ngIf="informationFormHas.password.errors?.maxlength" class="text-danger" > Password between 5 to 15 characters</small>
-                     </div>
 
-                     <div class="form-group rounded-15">
-                        <label for="">Service Address</label>
-                        
-                        <input type="text" class="form-control" formControlName="serviceAddress" name="name" required>
+                    <div class="form-group rounded-15">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="Last Name" formControlName="lastName" required>
+                            <mat-error *ngIf="submitted && informationFormHas.lastName?.errors">
+                                <mat-error class="error-message" *ngIf="informationFormHas.lastName.errors?.required">
+                                    Last Name is Required </mat-error>
+                                <mat-error class="error-message" *ngIf="informationFormHas.lastName.errors?.minlength">
+                                    Last Name between 3 to 30 characters</mat-error>
+                                <mat-error class="error-message" *ngIf="informationFormHas.lastName.errors?.maxlength">
+                                    Last Name between 3 to 30 characters</mat-error>
+                            </mat-error>
+                        </mat-form-field>
                     </div>
-                     <div *ngIf="submitted && informationFormHas.serviceAddress?.errors">
-                         <small *ngIf="informationFormHas.serviceAddress.errors?.required" class="text-danger" > Service Address is Required </small>
-                         <small *ngIf="informationFormHas.serviceAddress.errors?.minlength" class="text-danger" > Service Address between 5 to 70 characters </small>
-                         <small *ngIf="informationFormHas.serviceAddress.errors?.maxlength" class="text-danger" > Service Address between 5 to 70 characters</small>
-                     </div>
+
+                    <div class="form-group rounded-15">
+                        <mat-form-field class="full-width">
+                            <input type="password" matInput placeholder="password" formControlName="password"
+                                name="password" required>
+                            <mat-error *ngIf="submitted && informationFormHas.password?.errors">
+                                <mat-error class="error-message" *ngIf="informationFormHas.password.errors?.required">
+                                    Last Name is Required </mat-error>
+                                <mat-error class="error-message" *ngIf="informationFormHas.password.errors?.minlength">
+                                    Last Name between 5 to 30 characters</mat-error>
+                                <mat-error class="error-message" *ngIf="informationFormHas.password.errors?.maxlength">
+                                    Last Name between 5 to 30 characters</mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group rounded-15">
+                        <mat-form-field class="full-width">
+                            <input matInput placeholder="serviceAddress" formControlName="serviceAddress"
+                                name="serviceAddress" required>
+                            <mat-error *ngIf="submitted && informationFormHas.serviceAddress?.errors">
+                                <mat-error class="error-message"
+                                    *ngIf="informationFormHas.serviceAddress.errors?.required">Service Address
+                                    is Required </mat-error>
+                                <mat-error class="error-message"
+                                    *ngIf="informationFormHas.serviceAddress.errors?.minlength">Service Address
+                                    between 5 to 70 characters</mat-error>
+                                <mat-error class="error-message"
+                                    *ngIf="informationFormHas.serviceAddress.errors?.maxlength">Service Address
+                                    between 5 to 70 characters</mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group rounded-15">
+                        <mat-form-field class="full-width">
+                            <input matInput [matDatepicker]="picker" placeholder="Your birthday"
+                                formControlName="birthday" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            <mat-error *ngIf="submitted && informationFormHas.birthday?.errors">
+                                <mat-error *ngIf="informationFormHas.birthday.errors?.required">Birth Date is Required
+                                </mat-error>
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
 
                     <div class="">
                         <button type="submit" class="btn btn-success float-left">Next</button>

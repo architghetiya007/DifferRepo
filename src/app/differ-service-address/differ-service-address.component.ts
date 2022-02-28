@@ -17,6 +17,7 @@ import swal from 'sweetalert2';
 })
 export class DifferServiceAddressComponent implements OnInit {
 
+  fullAddress = '';
   serviceAddressForm!: FormGroup;
   submitted = false;
 
@@ -37,10 +38,25 @@ export class DifferServiceAddressComponent implements OnInit {
     if (this.serviceAddressForm.invalid) {
       return;
     }
-    console.log(this.serviceAddressForm.value)
-    localStorage.removeItem('address') 
-    localStorage.setItem("address",this.serviceAddressForm.value.address);
+    console.log(this.serviceAddressForm.value);
+    sessionStorage.removeItem('address') 
+    sessionStorage.setItem("address",this.serviceAddressForm.value.address);
     this.router.navigate(['/differ-service-list']);
+  }
+
+  
+  onchange(event:any) {
+    console.log(event,"event");
+    if(event.target.value) {
+      this.fullAddress = this.fullAddress +event.target.value;
+    }
+    console.log(this.fullAddress,"fullAddress>>>>>>");
+     
+  }
+
+  onClick(event:any) {
+    console.log("click call",event);
+    
   }
 
 }

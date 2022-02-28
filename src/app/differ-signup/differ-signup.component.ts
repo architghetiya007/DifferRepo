@@ -39,17 +39,18 @@ export class DifferSignupComponent implements OnInit {
     if (this.signupForm.invalid) {
       return;
     }
+    sessionStorage.setItem('email',this.signupForm.value.email);
     let reqData = {
-      address:localStorage.getItem('address'),
-      selectedId:localStorage.getItem('selectedId'),
+      address:sessionStorage.getItem('address'),
+      selectedId:sessionStorage.getItem('selectedId'),
       email: this.signupForm.value.email,
     }
     this.differServiceList.differCreateCustomer(reqData).subscribe(async (result:any) => {
       console.log(result,"result>>>>>>>>>>>>>>>>>");
-      if(result['code'] == 204 ) {
+      if(result['code'] == 201 ) {
         this.router.navigate(['/differ-customer-information']);
       }
-      if(result['code'] == 200 ) {
+      if(result['code'] == 200 || result['code'] == 204) {
         this.customer = result['data'];
         this.router.navigate(['/differ-signup-verify']);
       }
