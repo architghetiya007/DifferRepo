@@ -88,15 +88,18 @@ export class DifferMyProfileComponent implements OnInit {
     });
   }
 
+  formattedDate:any;
   prefilledValue() {
-    let dt = moment(sessionStorage.getItem('birthday'),"mm/dd/yyyy");
-    
+    let dt = sessionStorage.getItem('birthday');
+    if(dt) {
+      this.formattedDate = this.convertDate(dt);
+    }
     this.myProfileForm.patchValue({
       firstName: sessionStorage.getItem('firstName') ,
       lastName: sessionStorage.getItem('lastName') ,
       password: sessionStorage.getItem('password') ,
       serviceAddress: sessionStorage.getItem('address') ,
-      birthday : sessionStorage.getItem('birthday')
+      birthday : new Date(this.formattedDate[0]+'/'+this.formattedDate[1]+'/'+this.formattedDate[2])
     });
   }
 
@@ -114,6 +117,12 @@ export class DifferMyProfileComponent implements OnInit {
     }
   }
 
+  convertDate(str:any) {
+    var date = new Date(str),
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), mnth, day];
+  }
   
 
 }
