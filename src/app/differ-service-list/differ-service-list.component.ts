@@ -24,7 +24,7 @@ export class DifferServiceListComponent implements OnInit {
 
   ngOnInit(): void {
     this.address = sessionStorage.getItem('address');
-    this.getItemList();   
+    this.getItemList();  
   }
 
   handleServiceClick(data:any) {
@@ -46,5 +46,5 @@ export class DifferServiceListComponent implements OnInit {
       console.log(err,"error");
     });
   }
-
+  
 }

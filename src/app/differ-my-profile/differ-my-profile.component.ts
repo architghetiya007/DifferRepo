@@ -44,12 +44,12 @@ export class DifferMyProfileComponent implements OnInit {
     });
 
     this.MyNetworkForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70) ]),
-      password: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(15) ]),
-      serviceAddress: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70) ]),
+      SSID: new FormControl('', [Validators.required ]),
+      NetworkPassword: new FormControl('', [Validators.required ]),
     });
 
     this.prefilledValue();
+    this.getNetworkInfo();
   }
 
   get myProfileFormHas(): { [key: string]: AbstractControl } {
@@ -122,6 +122,31 @@ export class DifferMyProfileComponent implements OnInit {
       mnth = ("0" + (date.getMonth() + 1)).slice(-2),
       day = ("0" + date.getDate()).slice(-2);
     return [date.getFullYear(), mnth, day];
+  }
+
+  DeviceArr:any = [];
+  getNetworkInfo() {
+    let reqObj = {
+      email:sessionStorage.getItem('email')
+    }
+    this.differServiceList.differGetNetworkInfo(reqObj).subscribe((result:any) => {
+      console.log(result,"result>>>>>>>>>>>>>>>>>");
+      if(result['code'] == 200 ) {
+        
+        result.data.devices.forEach((element:any) => {
+          this.DeviceArr.push(element)
+        });
+         this.MyNetworkForm.patchValue({
+          SSID: result.data.ssid,
+          NetworkPassword :result.data.wpa2_key,
+         });
+        console.log(this.MyNetworkForm.value,"value>");
+        
+      }
+    }, 
+    (err:any) => {
+      console.log(err,"error");
+    });
   }
   
 

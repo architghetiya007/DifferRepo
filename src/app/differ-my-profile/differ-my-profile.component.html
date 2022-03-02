@@ -152,47 +152,42 @@
             <div class="col-md-6 mx-auto">
                 <div class="card rounded-20">
                     <div class="card-header">
-                        <h3 class="mb-0">Customer Information</h3>
+                        <h3 class="mb-0">Network Information</h3>
                     </div>
                     <div class="card-body">
                         
                         <form [formGroup]="MyNetworkForm" (ngSubmit)="handleSubmit3()" class="form">
                             
                             <div class="form-group rounded-15">
-                                <label for="">Name</label>
+                                <label for="">SSID</label>
                                 
-                                <input type="text" class="form-control" formControlName="name" name="name" required>
+                                <input type="text" class="form-control" formControlName="SSID" name="SSID" required>
                             </div>
-                             <div *ngIf="submitted3 && MyNetworkFormHas.name?.errors">
-                                 <small *ngIf="MyNetworkFormHas.name.errors?.required" class="text-danger" > Name is Required </small>
-                                 <small *ngIf="MyNetworkFormHas.name.errors?.minlength" class="text-danger" > Name between 5 to 30 characters </small>
-                                 <small *ngIf="MyNetworkFormHas.name.errors?.maxlength" class="text-danger" > Name between 5 to 30 characters</small>
+                             <div *ngIf="submitted3 && MyNetworkFormHas.SSID?.errors">
+                                 <small *ngIf="MyNetworkFormHas.SSID.errors?.required" class="text-danger" > SSID is Required </small>
                             </div>
         
                             <div class="form-group rounded-15">
-                                <label for="">Password</label>
+                                <label for="">Network Password</label>
                                 
-                                <input type="text" class="form-control" formControlName="password" name="name" required>
+                                <input type="password" class="form-control" formControlName="NetworkPassword" name="name" required>
                             </div>
-                             <div *ngIf="submitted3 && MyNetworkFormHas.password?.errors">
-                                 <small *ngIf="MyNetworkFormHas.password.errors?.required" class="text-danger" > Password is Required </small>
-                                 <small *ngIf="MyNetworkFormHas.password.errors?.minlength" class="text-danger" > Password between 5 to 15 characters </small>
-                                 <small *ngIf="MyNetworkFormHas.password.errors?.maxlength" class="text-danger" > Password between 5 to 15 characters</small>
+                             <div *ngIf="submitted3 && MyNetworkFormHas.NetworkPassword?.errors">
+                                 <small *ngIf="MyNetworkFormHas.NetworkPassword.errors?.required" class="text-danger" > Network Password is Required </small>
                              </div>
         
                              <div class="form-group rounded-15">
-                                <label for="">Service Address</label>
-                                
-                                <input type="text" class="form-control" formControlName="serviceAddress" name="name" required>
+                                <label for="">My Devices</label>
+                                <div>
+                                    <span *ngFor="let ele of DeviceArr">{{ ele.ip }} {{ ele.hostname }}</span>
+                                </div>
                             </div>
-                             <div *ngIf="submitted3 && MyNetworkFormHas.serviceAddress?.errors">
-                                 <small *ngIf="MyNetworkFormHas.serviceAddress.errors?.required" class="text-danger" > Service Address is Required </small>
-                                 <small *ngIf="MyNetworkFormHas.serviceAddress.errors?.minlength" class="text-danger" > Service Address between 5 to 70 characters </small>
-                                 <small *ngIf="MyNetworkFormHas.serviceAddress.errors?.maxlength" class="text-danger" > Service Address between 5 to 70 characters</small>
+                             <div *ngIf="submitted3 && MyNetworkFormHas.MyDevice?.errors">
+                                 <small *ngIf="MyNetworkFormHas.MyDevice.errors?.required" class="text-danger" > My Devices is Required </small>
                              </div>
         
                             <div class="">
-                                <button type="submit" class="btn btn-success float-left">Next</button>
+                                <button type="submit" class="btn btn-success float-left"> Submit </button>
                             </div>
                         </form>
                     </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -20,13 +20,15 @@ export class DifferServiceAddressComponent implements OnInit {
   fullAddress = '';
   serviceAddressForm!: FormGroup;
   submitted = false;
+  @ViewChild('address') viewChildAddress:any;
+  @ViewChild('city') viewChildCity:any;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.serviceAddressForm = new FormGroup({
-      address: new FormControl('', [Validators.required ]),
-      city: new FormControl('', [ ]),
+      address: new FormControl('', [Validators.required]),
+      city: new FormControl('', []),
     });
   }
 
@@ -34,21 +36,32 @@ export class DifferServiceAddressComponent implements OnInit {
     return this.serviceAddressForm.controls;
   }
 
+
   handleSubmit() {
     this.submitted = true;
+
+    this.serviceAddressForm.patchValue({
+      address: this.viewChildAddress.nativeElement.value,
+      city: this.viewChildCity.nativeElement.value
+    });
+
     if (this.serviceAddressForm.invalid) {
-      console.log(this.serviceAddressForm.invalid);
-      console.log(this.serviceAddressForm)
       return;
     }
-    console.log(this.serviceAddressForm.value);
+
+    this.fullAddress = this.serviceAddressForm.value.address + ' '+ this.serviceAddressForm.value.city;
+
     sessionStorage.removeItem('address') 
-    sessionStorage.setItem("address",this.serviceAddressForm.value.address);
+    sessionStorage.setItem("address",this.fullAddress);
     this.router.navigate(['/differ-service-list']);
   }
   
   cityChange(event:any) {
-    console.log(event,"event>>>>>>");
+    console.log(event.target.value,"event>>>>>>");
+    this.serviceAddressForm.patchValue({
+      city : event.target.value
+    })
+
   }
 
 
