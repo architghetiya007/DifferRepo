@@ -60,7 +60,6 @@ export class DifferCustomerInformationComponent implements OnInit {
     sessionStorage.setItem('birthday',this.InformationForm.value.birthday);
     sessionStorage.setItem('firstName',this.InformationForm.value.firstName);
     sessionStorage.setItem('lastName',this.InformationForm.value.lastName);
-    sessionStorage.setItem('password',this.InformationForm.value.password);
     
     let reqData = {
       email: this.InformationForm.value.email,
@@ -72,7 +71,11 @@ export class DifferCustomerInformationComponent implements OnInit {
     };
     this.differServiceList.differCustomerInformation(reqData).subscribe((result: any) => {
       if (result['code'] == 200) {
+        sessionStorage.setItem('token',result.data.token);
         this.router.navigate(['/differ-checkout']);
+      }
+      else {
+        swal.fire(result.message);
       }
     },
       (err: any) => {

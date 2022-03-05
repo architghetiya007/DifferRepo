@@ -27,6 +27,9 @@ export class DifferMyProfileComponent implements OnInit {
   submitted1 = false;
   submitted2 = false;
   submitted3 = false;
+  DeviceArr:any = [];
+  formattedDate:any;
+  profileInfo : any;
 
   ngOnInit(): void {
     this.myProfileForm = new FormGroup({
@@ -48,8 +51,8 @@ export class DifferMyProfileComponent implements OnInit {
       NetworkPassword: new FormControl('', [Validators.required ]),
     });
 
-    this.prefilledValue();
     this.getNetworkInfo();
+    this.getProfileInfo();
   }
 
   get myProfileFormHas(): { [key: string]: AbstractControl } {
@@ -88,21 +91,6 @@ export class DifferMyProfileComponent implements OnInit {
     });
   }
 
-  formattedDate:any;
-  prefilledValue() {
-    let dt = sessionStorage.getItem('birthday');
-    if(dt) {
-      this.formattedDate = this.convertDate(dt);
-    }
-    this.myProfileForm.patchValue({
-      firstName: sessionStorage.getItem('firstName') ,
-      lastName: sessionStorage.getItem('lastName') ,
-      password: sessionStorage.getItem('password') ,
-      serviceAddress: sessionStorage.getItem('address') ,
-      birthday : new Date(this.formattedDate[0]+'/'+this.formattedDate[1]+'/'+this.formattedDate[2])
-    });
-  }
-
   handleSubmit2() {
     this.submitted2 = true;
     if (this.mySubscriptionForm.invalid) {
@@ -115,6 +103,28 @@ export class DifferMyProfileComponent implements OnInit {
     if (this.MyNetworkForm.invalid) {
       return;
     }
+
+    let reqObj = {
+      ssid:this.MyNetworkForm.value.SSID,
+      wpa2_key:this.MyNetworkForm.value.NetworkPassword
+    }
+    
+
+    this.differServiceList.differUpdateNetworkInfo(reqObj).subscribe((result:any) => {
+      if(result['code'] == 200) {
+        this.getNetworkInfo();
+        swal.fire("Update Successfully...");
+      }
+      else {
+        swal.fire(result['message']);
+      }
+
+    }, 
+    (err:any) => {
+      console.log(err,"error");
+    });
+
+
   }
 
   convertDate(str:any) {
@@ -124,13 +134,11 @@ export class DifferMyProfileComponent implements OnInit {
     return [date.getFullYear(), mnth, day];
   }
 
-  DeviceArr:any = [];
   getNetworkInfo() {
     let reqObj = {
       email:sessionStorage.getItem('email')
     }
     this.differServiceList.differGetNetworkInfo(reqObj).subscribe((result:any) => {
-      console.log(result,"result>>>>>>>>>>>>>>>>>");
       if(result['code'] == 200 ) {
         
         result.data.devices.forEach((element:any) => {
@@ -140,14 +148,28 @@ export class DifferMyProfileComponent implements OnInit {
           SSID: result.data.ssid,
           NetworkPassword :result.data.wpa2_key,
          });
-        console.log(this.MyNetworkForm.value,"value>");
-        
       }
     }, 
     (err:any) => {
       console.log(err,"error");
     });
   }
-  
 
+  getProfileInfo() {
+
+    this.differServiceList.differGetUserInfo().subscribe((result:any) => {
+      this.profileInfo = result.data;
+      this.formattedDate = this.convertDate(result.data.cf_birthday);
+      this.myProfileForm.patchValue({
+        firstName: result.data.first_name ,
+        lastName: result.data.last_name ,
+        serviceAddress: sessionStorage.getItem('address') ,
+        birthday : new Date(this.formattedDate[0]+'/'+this.formattedDate[1]+'/'+this.formattedDate[2])
+      });
+    }, 
+    (err:any) => {
+      console.log(err,"error");
+    });
+  }
+  
 }

@@ -14,33 +14,17 @@ export class RouteGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot): any {
-    // let user = sessionStorage.getItem('token');
-    // if (user) {
-    //   let reqObj = { token: user };
-    //   return new Observable((observer: any) => {
-    //     this.authService.CheckValidToken(reqObj).subscribe((result: any) => {
-    //       console.log(result, "result");
-    //       if (result['code'] == 200) {
-    //         observer.next(true);
-    //         return; //this.router.navigate(['/dashboard']);
-    //       }
-    //       else {
-    //         console.log("in else condition")
-    //         this.router.navigate(['/login']);
-    //         observer.next(false);
-    //         return;
-    //       }
-    //     }, (err: any) => {
-    //        this.router.navigate(['/login']);
-    //        observer.next(false);
-    //        return;
-    //     })
-    //   })
-    // }
-    // else {
-    //   this.router.navigate(['/login']);
-    //   return false;
-    // }
+    let user = sessionStorage.getItem('token');
+    if (user) {
+      return new Observable((observer: any) => {
+        observer.next(true);
+        return;
+      })
+    }
+    else {
+      this.router.navigate(['/differ-service-address']);
+      return false;
+    }
   }
 
 }
