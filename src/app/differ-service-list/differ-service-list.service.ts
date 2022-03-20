@@ -36,4 +36,8 @@ export class DifferServiceList {
     return this.http.get("http://localhost:3000/api/v1/auth/chargebee-get-user-detail");
   }
 
+  differCheckOut(data:any) {
+    return this.http.post("http://localhost:3000/api/v1/auth/chargebee-checkout",data);
+  }
+
 }

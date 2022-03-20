@@ -2,55 +2,11 @@
     <div id="customer-info" class="row">                
         <div class="col-sm-7" id="checkout_info">   
             <div id="subscribe-form">
-                <div class="page-header">
-                    <!-- <h3>Tell us about yourself</h3> -->
-                </div>
-                <!-- <div class="row">
-                    <div class="col-sm-6"> 
-                        <div class="form-group">
-                            <label for="first_name">First Name</label>
-                            <input type="text" class="form-control" [(ngModel)]="first_name">
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="last_name">Last Name</label>
-                            <input type="text" class="form-control" [(ngModel)]="last_name">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" class="form-control" [(ngModel)]="email">
-                        </div>
-                    </div> 
-                                                
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" [(ngModel)]="phone">
-                        </div>
-                    </div>                   
-                </div> 
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <label for="company">Company</label>
-                            <input type="text" class="form-control" [(ngModel)]="company">
-                        </div>
-                    </div>
-                </div>                         -->
                 <hr>                            
-                <p class="text-danger" *ngIf="errMsg">There were errors while submitting</p>
                 <div class="form-inline">
                     <div class="form-group">
-                    <a href="javascript:void(0)" data-cb-type="checkout" data-cb-item-0="cbdemo_advanced-USD-yearly" data-cb-item-0-quantity="1" >subscribe</a>
+                    <button type="button" class="btn btn-success" (click)="openCheckout()">Process To checkout</button>
                       <!-- <input type="submit" (click)="openCheckout()" class="submit-btn btn btn-success btn-lg" value="Proceed to Payment"> -->
-                    </div>
-                    <div class="form-group">
-                      <span ref="loader" class="subscribe-process process" *ngIf="loading">Processing&hellip;</span>
                     </div>
                 </div>                        
               </div>

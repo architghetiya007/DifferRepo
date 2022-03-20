@@ -29,7 +29,7 @@ export class DifferServiceListComponent implements OnInit {
 
   handleServiceClick(data:any) {
     // console.log("data>>>>>>>>>>>>>>>>>>>",data);
-    sessionStorage.setItem("selectedId",data.item.id);
+    sessionStorage.setItem("selectedId",data.item_price.id);
     this.router.navigate(['/differ-signup']);
   }
 
