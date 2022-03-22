@@ -1,199 +1,845 @@
-<app-differ-nav-bar></app-differ-nav-bar>
-<mat-tab-group class="ml-5 justify-content-center text-center">
-    <mat-tab label="My Profile"> 
-        <div class="row mt-5 title">
-            <div class="col-md-6 mx-auto">
-                <div class="card rounded-20">
-                    <div class="card-header">
-                        <h3 class="mb-0">Customer Information</h3>
-                    </div>
-                    <div class="card-body">
-                        
-                        <form [formGroup]="myProfileForm" (ngSubmit)="handleSubmit1()" class="form">
-        
-                            <div class="form-group rounded-15">
-                                <mat-form-field class="full-width">
-                                    <input matInput placeholder="First Name" formControlName="firstName" required>
-                                    <mat-error *ngIf="submitted1 && myProfileFormHas.firstName?.errors">
-                                        <mat-error class="error-message" *ngIf="myProfileFormHas.firstName.errors?.required">
-                                            First Name is Required </mat-error>
-                                        <mat-error class="error-message" *ngIf="myProfileFormHas.firstName.errors?.minlength">
-                                            First Name between 3 to 30 characters</mat-error>
-                                        <mat-error class="error-message" *ngIf="myProfileFormHas.firstName.errors?.maxlength">
-                                            First Name between 3 to 30 characters</mat-error>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-        
-                            <div class="form-group rounded-15">
-                                <mat-form-field class="full-width">
-                                    <input matInput placeholder="Last Name" formControlName="lastName" required>
-                                    <mat-error *ngIf="submitted1 && myProfileFormHas.lastName?.errors">
-                                        <mat-error class="error-message" *ngIf="myProfileFormHas.lastName.errors?.required">
-                                            Last Name is Required </mat-error>
-                                        <mat-error class="error-message" *ngIf="myProfileFormHas.lastName.errors?.minlength">
-                                            Last Name between 3 to 30 characters</mat-error>
-                                        <mat-error class="error-message" *ngIf="myProfileFormHas.lastName.errors?.maxlength">
-                                            Last Name between 3 to 30 characters</mat-error>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-        
-                            <div class="form-group rounded-15">
-                                <mat-form-field class="full-width">
-                                    <input type="password" matInput placeholder="password" formControlName="password"
-                                        name="password" required>
-                                    <mat-error *ngIf="submitted1 && myProfileFormHas.password?.errors">
-                                        <mat-error class="error-message" *ngIf="myProfileFormHas.password.errors?.required">
-                                            Password is Required </mat-error>
-                                        <mat-error class="error-message" *ngIf="myProfileFormHas.password.errors?.minlength">
-                                            Password between 5 to 15 characters</mat-error>
-                                        <mat-error class="error-message" *ngIf="myProfileFormHas.password.errors?.maxlength">
-                                            Password between 5 to 15 characters</mat-error>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-        
-                            <div class="form-group rounded-15">
-                                <mat-form-field class="full-width">
-                                    <input matInput placeholder="serviceAddress" formControlName="serviceAddress"
-                                        name="serviceAddress" required>
-                                    <mat-error *ngIf="submitted1 && myProfileFormHas.serviceAddress?.errors">
-                                        <mat-error class="error-message"
-                                            *ngIf="myProfileFormHas.serviceAddress.errors?.required">Service Address
-                                            is Required </mat-error>
-                                        <mat-error class="error-message"
-                                            *ngIf="myProfileFormHas.serviceAddress.errors?.minlength">Service Address
-                                            between 5 to 70 characters</mat-error>
-                                        <mat-error class="error-message"
-                                            *ngIf="myProfileFormHas.serviceAddress.errors?.maxlength">Service Address
-                                            between 5 to 70 characters</mat-error>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-        
-                            <div class="form-group rounded-15">
-                                <mat-form-field class="full-width">
-                                    <input matInput [matDatepicker]="picker" placeholder="Your birthday"
-                                        formControlName="birthday" required>
-                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                    <mat-datepicker #picker></mat-datepicker>
-                                    <mat-error *ngIf="submitted1 && myProfileFormHas.birthday?.errors">
-                                        <mat-error *ngIf="myProfileFormHas.birthday.errors?.required">Birth Date is Required
-                                        </mat-error>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-        
-                            <div class="">
-                                <button type="submit" class="btn btn-success float-left">Next</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+<div class="d-flex justify-content-center align-items-center flex-column h-100">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+      <li class="nav-item" role="profile">
+        <button
+          class="nav-link active"
+          id="profile-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#profile"
+          type="button"
+          role="tab"
+          aria-controls="profile"
+          aria-selected="true"
+        >
+          My Profile
+        </button>
+      </li>
+      <li class="nav-item" role="profile">
+        <button
+          class="nav-link"
+          id="subscription-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#subscription"
+          type="button"
+          role="tab"
+          aria-controls="subscription"
+          aria-selected="false"
+        >
+          My Subscription
+        </button>
+      </li>
+      <li class="nav-item" role="profile">
+        <button
+          class="nav-link"
+          id="network-tab"
+          data-bs-toggle="pill"
+          data-bs-target="#network"
+          type="button"
+          role="tab"
+          aria-controls="network"
+          aria-selected="false"
+        >
+          My Network
+        </button>
+      </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+      <div
+        class="tab-pane fade show active"
+        id="profile"
+        role="tabpanel"
+        aria-labelledby="profile-tab"
+      >
+        <form
+          [formGroup]="myProfileForm"
+          (ngSubmit)="handleSubmit1()"
+          class="form customer-info"
+        >
+          <input
+            type="text"
+            class="form-control"
+            name="firstName"
+            formControlName="firstName"
+            placeholder="First Name"
+          />
+          <div
+            class="error-box"
+            *ngIf="submitted1 && myProfileFormHas.firstName?.errors"
+          >
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.firstName.errors?.required"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text">First Name is Required</span>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
             </div>
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.firstName.errors?.minlength"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text"
+                >First Name between 3 to 30 characters</span
+              >
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
+            </div>
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.firstName.errors?.maxlength"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text"
+                >First Name between 3 to 30 characters</span
+              >
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
+            </div>
+          </div>
+  
+          <input
+            type="text"
+            class="form-control"
+            name="lastName"
+            formControlName="lastName"
+            placeholder="Last Name"
+          />
+          <div
+            class="error-box"
+            *ngIf="submitted1 && myProfileFormHas.lastName?.errors"
+          >
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.lastName.errors?.required"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text">Last Name is Required</span>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
+            </div>
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.lastName.errors?.minlength"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text">Last Name between 5 to 30 characters</span>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
+            </div>
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.lastName.errors?.maxlength"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text">Last Name between 5 to 30 characters</span>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
+            </div>
+          </div>
+  
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <div
+            class="error-box"
+            *ngIf="submitted1 && myProfileFormHas.password?.errors"
+          >
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.password.errors?.required"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text">Password is Required</span>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
+            </div>
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.password.errors?.minlength"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text">Password between 5 to 15 characters</span>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
+            </div>
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.password.errors?.maxlength"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text">Password between 5 to 15 characters</span>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
+            </div>
+          </div>
+  
+          <input
+            type="date"
+            class="form-control"
+            name="birthday"
+            formControlName="birthday"
+            placeholder="Birthday"
+          />
+          <div
+            class="error-box"
+            *ngIf="submitted1 && myProfileFormHas.birthday?.errors"
+          >
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.birthday.errors?.required"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text">Birthday is Required</span>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
+            </div>
+          </div>
+  
+          <textarea
+            class="form-control"
+            name="serviceAddress"
+            formControlName="serviceAddress"
+            placeholder="Service Address"
+            rows="3"
+          ></textarea>
+          <div
+            class="error-box"
+            *ngIf="submitted1 && myProfileFormHas.serviceAddress?.errors"
+          >
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.serviceAddress.errors?.required"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text">Service Address is Required</span>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
+            </div>
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.email.errors?.minlength"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text"
+                >Email Address between 5 to 70 characters</span
+              >
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
+            </div>
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="myProfileFormHas.email.errors?.maxlength"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text"
+                >Email Address between 5 to 70 characters</span
+              >
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted1 = false; myProfileForm.reset()"
+              ></button>
+            </div>
+          </div>
+  
+          <button class="btn w-100 mb-2" type="submit">Submit</button>
+        </form>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="subscription"
+        role="tabpanel"
+        aria-labelledby="subscription-tab"
+      >
+        <div class="table-box">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Subscription</th>
+                <th scope="col">Address</th>
+                <th scope="col">Billing Details</th>
+                <th scope="col" width="160px">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let element of subscriptionInfo">
+                <th scope="row">1</th>
+                <td>{{ element.subscription.subscription_items[0].item_price_id}}</td>
+                <td>{{ element.customer.billing_address.line1}}</td>
+                <td>
+                  <p>{{ element.card.masked_number}}</p>
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-light mb-2 me-2"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Manage My Subscription"
+                  >
+                    <i class="fa-solid fa-money-check"></i>
+                  </button>
+                  <button
+                    type="button" 
+                    class="btn btn-light mb-2"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom"
+                    title="Change Billing Details"
+                  >
+                    <i class="fa-solid fa-file-invoice-dollar"></i>
+                  </button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
         </div>
+      </div>
+      <div
+        class="tab-pane fade"
+        id="network"
+        role="tabpanel"
+        aria-labelledby="network-tab"
+      >
+        <form
+          [formGroup]="MyNetworkForm"
+          (ngSubmit)="handleSubmit3()"
+          class="form customer-info"
+        >
+          <input
+            type="text"
+            class="form-control"
+            name="SSID"
+            formControlName="SSID"
+            placeholder="SSID"
+          />
+          <div
+            class="error-box"
+            *ngIf="submitted3 && MyNetworkFormHas.SSID?.errors"
+          >
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="MyNetworkFormHas.SSID.errors?.required"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text">SSID is Required</span>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted3 = false; MyNetworkForm.reset()"
+              ></button>
+            </div>
+          </div>
+  
+          <input
+            type="text"
+            class="form-control"
+            name="NetworkPassword"
+            formControlName="NetworkPassword"
+            placeholder="Network Password"
+          />
+          <div
+            class="error-box"
+            *ngIf="submitted3 && MyNetworkFormHas.NetworkPassword?.errors"
+          >
+            <div
+              class="alert alert-danger alert-dismissible fade show"
+              role="alert"
+              *ngIf="MyNetworkFormHas.NetworkPassword.errors?.required"
+            >
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span class="error-text">Network Password is Required</span>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="alert"
+                aria-label="Close"
+                (click)="submitted3 = false; MyNetworkForm.reset()"
+              ></button>
+            </div>
+          </div>
+  
+          <button class="btn w-100 mb-2" type="submit">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <!-- <mat-tab-group class="ml-5 justify-content-center text-center">
+    <mat-tab label="My Profile">
+      <div class="row mt-5 title">
+        <div class="col-md-6 mx-auto">
+          <div class="card rounded-20">
+            <div class="card-header">
+              <h3 class="mb-0">Customer Information</h3>
+            </div>
+            <div class="card-body">
+              <form
+                [formGroup]="myProfileForm"
+                (ngSubmit)="handleSubmit1()"
+                class="form"
+              >
+                <div class="form-group rounded-15">
+                  <mat-form-field class="full-width">
+                    <input
+                      matInput
+                      placeholder="First Name"
+                      formControlName="firstName"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="submitted1 && myProfileFormHas.firstName?.errors"
+                    >
+                      <mat-error
+                        class="error-message"
+                        *ngIf="myProfileFormHas.firstName.errors?.required"
+                      >
+                        First Name is Required
+                      </mat-error>
+                      <mat-error
+                        class="error-message"
+                        *ngIf="myProfileFormHas.firstName.errors?.minlength"
+                      >
+                        First Name between 3 to 30 characters</mat-error
+                      >
+                      <mat-error
+                        class="error-message"
+                        *ngIf="myProfileFormHas.firstName.errors?.maxlength"
+                      >
+                        First Name between 3 to 30 characters</mat-error
+                      >
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+  
+                <div class="form-group rounded-15">
+                  <mat-form-field class="full-width">
+                    <input
+                      matInput
+                      placeholder="Last Name"
+                      formControlName="lastName"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="submitted1 && myProfileFormHas.lastName?.errors"
+                    >
+                      <mat-error
+                        class="error-message"
+                        *ngIf="myProfileFormHas.lastName.errors?.required"
+                      >
+                        Last Name is Required
+                      </mat-error>
+                      <mat-error
+                        class="error-message"
+                        *ngIf="myProfileFormHas.lastName.errors?.minlength"
+                      >
+                        Last Name between 3 to 30 characters</mat-error
+                      >
+                      <mat-error
+                        class="error-message"
+                        *ngIf="myProfileFormHas.lastName.errors?.maxlength"
+                      >
+                        Last Name between 3 to 30 characters</mat-error
+                      >
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+  
+                <div class="form-group rounded-15">
+                  <mat-form-field class="full-width">
+                    <input
+                      type="password"
+                      matInput
+                      placeholder="password"
+                      formControlName="password"
+                      name="password"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="submitted1 && myProfileFormHas.password?.errors"
+                    >
+                      <mat-error
+                        class="error-message"
+                        *ngIf="myProfileFormHas.password.errors?.required"
+                      >
+                        Password is Required
+                      </mat-error>
+                      <mat-error
+                        class="error-message"
+                        *ngIf="myProfileFormHas.password.errors?.minlength"
+                      >
+                        Password between 5 to 15 characters</mat-error
+                      >
+                      <mat-error
+                        class="error-message"
+                        *ngIf="myProfileFormHas.password.errors?.maxlength"
+                      >
+                        Password between 5 to 15 characters</mat-error
+                      >
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+  
+                <div class="form-group rounded-15">
+                  <mat-form-field class="full-width">
+                    <input
+                      matInput
+                      placeholder="serviceAddress"
+                      formControlName="serviceAddress"
+                      name="serviceAddress"
+                      required
+                    />
+                    <mat-error
+                      *ngIf="
+                        submitted1 && myProfileFormHas.serviceAddress?.errors
+                      "
+                    >
+                      <mat-error
+                        class="error-message"
+                        *ngIf="myProfileFormHas.serviceAddress.errors?.required"
+                        >Service Address is Required
+                      </mat-error>
+                      <mat-error
+                        class="error-message"
+                        *ngIf="myProfileFormHas.serviceAddress.errors?.minlength"
+                        >Service Address between 5 to 70 characters</mat-error
+                      >
+                      <mat-error
+                        class="error-message"
+                        *ngIf="myProfileFormHas.serviceAddress.errors?.maxlength"
+                        >Service Address between 5 to 70 characters</mat-error
+                      >
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+  
+                <div class="form-group rounded-15">
+                  <mat-form-field class="full-width">
+                    <input
+                      matInput
+                      [matDatepicker]="picker"
+                      placeholder="Your birthday"
+                      formControlName="birthday"
+                      required
+                    />
+                    <mat-datepicker-toggle
+                      matSuffix
+                      [for]="picker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error
+                      *ngIf="submitted1 && myProfileFormHas.birthday?.errors"
+                    >
+                      <mat-error
+                        *ngIf="myProfileFormHas.birthday.errors?.required"
+                        >Birth Date is Required
+                      </mat-error>
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+  
+                <div class="">
+                  <button type="submit" class="btn btn-success float-left">
+                    Next
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </mat-tab>
     <mat-tab label="My Subscription">
-        <div class="row mt-5 title">
-            <div class="col-md-6 mx-auto">
-                <div class="card rounded-20">
-                    <div class="card-header">
-                        <h3 class="mb-0">Customer Information</h3>
-                    </div>
-                    <div class="card-body">
-                        
-                        <form [formGroup]="mySubscriptionForm" (ngSubmit)="handleSubmit2()" class="form">
-                            
-                            <div class="form-group rounded-15">
-                                <label for="">Name</label>
-                                
-                                <input type="text" class="form-control" formControlName="name" name="name" required>
-                            </div>
-                             <div *ngIf="submitted2 && mySubscriptionFormHas.name?.errors">
-                                 <small *ngIf="mySubscriptionFormHas.name.errors?.required" class="text-danger" > Name is Required </small>
-                                 <small *ngIf="mySubscriptionFormHas.name.errors?.minlength" class="text-danger" > Name between 5 to 30 characters </small>
-                                 <small *ngIf="mySubscriptionFormHas.name.errors?.maxlength" class="text-danger" > Name between 5 to 30 characters</small>
-                            </div>
-        
-                            <div class="form-group rounded-15">
-                                <label for="">Password</label>
-                                
-                                <input type="text" class="form-control" formControlName="password" name="name" required>
-                            </div>
-                             <div *ngIf="submitted2 && mySubscriptionFormHas.password?.errors">
-                                 <small *ngIf="mySubscriptionFormHas.password.errors?.required" class="text-danger" > Password is Required </small>
-                                 <small *ngIf="mySubscriptionFormHas.password.errors?.minlength" class="text-danger" > Password between 5 to 15 characters </small>
-                                 <small *ngIf="mySubscriptionFormHas.password.errors?.maxlength" class="text-danger" > Password between 5 to 15 characters</small>
-                             </div>
-        
-                             <div class="form-group rounded-15">
-                                <label for="">Service Address</label>
-                                
-                                <input type="text" class="form-control" formControlName="serviceAddress" name="name" required>
-                            </div>
-                             <div *ngIf="submitted2 && mySubscriptionFormHas.serviceAddress?.errors">
-                                 <small *ngIf="mySubscriptionFormHas.serviceAddress.errors?.required" class="text-danger" > Service Address is Required </small>
-                                 <small *ngIf="mySubscriptionFormHas.serviceAddress.errors?.minlength" class="text-danger" > Service Address between 5 to 70 characters </small>
-                                 <small *ngIf="mySubscriptionFormHas.serviceAddress.errors?.maxlength" class="text-danger" > Service Address between 5 to 70 characters</small>
-                             </div>
-        
-                            <div class="">
-                                <button type="submit" class="btn btn-success float-left">Next</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+      <div class="row mt-5 title">
+        <div class="col-md-6 mx-auto">
+          <div class="card rounded-20">
+            <div class="card-header">
+              <h3 class="mb-0">Customer Information</h3>
             </div>
-        </div> 
-    </mat-tab>
-    <mat-tab label="My Network"> 
-        <div class="row mt-5 title">
-            <div class="col-md-6 mx-auto">
-                <div class="card rounded-20">
-                    <div class="card-header">
-                        <h3 class="mb-0">Network Information</h3>
-                    </div>
-                    <div class="card-body">
-                        
-                        <form [formGroup]="MyNetworkForm" (ngSubmit)="handleSubmit3()" class="form">
-                            
-                            <div class="form-group rounded-15">
-                                <label for="">SSID</label>
-                                
-                                <input type="text" class="form-control" formControlName="SSID" name="SSID" required>
-                            </div>
-                             <div *ngIf="submitted3 && MyNetworkFormHas.SSID?.errors">
-                                 <small *ngIf="MyNetworkFormHas.SSID.errors?.required" class="text-danger" > SSID is Required </small>
-                            </div>
-        
-                            <div class="form-group rounded-15">
-                                <label for="">Network Password</label>
-                                
-                                <input type="password" class="form-control" formControlName="NetworkPassword" name="name" required>
-                            </div>
-                             <div *ngIf="submitted3 && MyNetworkFormHas.NetworkPassword?.errors">
-                                 <small *ngIf="MyNetworkFormHas.NetworkPassword.errors?.required" class="text-danger" > Network Password is Required </small>
-                             </div>
-        
-                             <div class="form-group rounded-15">
-                                <label for="">My Devices</label>
-                                <div>
-                                    <span *ngFor="let ele of DeviceArr">{{ ele.ip }} {{ ele.hostname }}</span>
-                                </div>
-                            </div>
-                             <div *ngIf="submitted3 && MyNetworkFormHas.MyDevice?.errors">
-                                 <small *ngIf="MyNetworkFormHas.MyDevice.errors?.required" class="text-danger" > My Devices is Required </small>
-                             </div>
-        
-                            <div class="">
-                                <button type="submit" class="btn btn-success float-left"> Submit </button>
-                            </div>
-                        </form>
-                    </div>
+            <div class="card-body">
+              <form
+                [formGroup]="mySubscriptionForm"
+                (ngSubmit)="handleSubmit2()"
+                class="form"
+              >
+                <div class="form-group rounded-15">
+                  <label for="">Name</label>
+  
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    name="name"
+                    required
+                  />
                 </div>
+                <div *ngIf="submitted2 && mySubscriptionFormHas.name?.errors">
+                  <small
+                    *ngIf="mySubscriptionFormHas.name.errors?.required"
+                    class="text-danger"
+                  >
+                    Name is Required
+                  </small>
+                  <small
+                    *ngIf="mySubscriptionFormHas.name.errors?.minlength"
+                    class="text-danger"
+                  >
+                    Name between 5 to 30 characters
+                  </small>
+                  <small
+                    *ngIf="mySubscriptionFormHas.name.errors?.maxlength"
+                    class="text-danger"
+                  >
+                    Name between 5 to 30 characters</small
+                  >
+                </div>
+  
+                <div class="form-group rounded-15">
+                  <label for="">Password</label>
+  
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="password"
+                    name="name"
+                    required
+                  />
+                </div>
+                <div *ngIf="submitted2 && mySubscriptionFormHas.password?.errors">
+                  <small
+                    *ngIf="mySubscriptionFormHas.password.errors?.required"
+                    class="text-danger"
+                  >
+                    Password is Required
+                  </small>
+                  <small
+                    *ngIf="mySubscriptionFormHas.password.errors?.minlength"
+                    class="text-danger"
+                  >
+                    Password between 5 to 15 characters
+                  </small>
+                  <small
+                    *ngIf="mySubscriptionFormHas.password.errors?.maxlength"
+                    class="text-danger"
+                  >
+                    Password between 5 to 15 characters</small
+                  >
+                </div>
+  
+                <div class="form-group rounded-15">
+                  <label for="">Service Address</label>
+  
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="serviceAddress"
+                    name="name"
+                    required
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    submitted2 && mySubscriptionFormHas.serviceAddress?.errors
+                  "
+                >
+                  <small
+                    *ngIf="mySubscriptionFormHas.serviceAddress.errors?.required"
+                    class="text-danger"
+                  >
+                    Service Address is Required
+                  </small>
+                  <small
+                    *ngIf="mySubscriptionFormHas.serviceAddress.errors?.minlength"
+                    class="text-danger"
+                  >
+                    Service Address between 5 to 70 characters
+                  </small>
+                  <small
+                    *ngIf="mySubscriptionFormHas.serviceAddress.errors?.maxlength"
+                    class="text-danger"
+                  >
+                    Service Address between 5 to 70 characters</small
+                  >
+                </div>
+  
+                <div class="">
+                  <button type="submit" class="btn btn-success float-left">
+                    Next
+                  </button>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </mat-tab>
-</mat-tab-group>
+    <mat-tab label="My Network">
+      <div class="row mt-5 title">
+        <div class="col-md-6 mx-auto">
+          <div class="card rounded-20">
+            <div class="card-header">
+              <h3 class="mb-0">Network Information</h3>
+            </div>
+            <div class="card-body">
+              <form
+                [formGroup]="MyNetworkForm"
+                (ngSubmit)="handleSubmit3()"
+                class="form"
+              >
+                <div class="form-group rounded-15">
+                  <label for="">SSID</label>
+  
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="SSID"
+                    name="SSID"
+                    required
+                  />
+                </div>
+                <div *ngIf="submitted3 && MyNetworkFormHas.SSID?.errors">
+                  <small
+                    *ngIf="MyNetworkFormHas.SSID.errors?.required"
+                    class="text-danger"
+                  >
+                    SSID is Required
+                  </small>
+                </div>
+  
+                <div class="form-group rounded-15">
+                  <label for="">Network Password</label>
+  
+                  <input
+                    type="password"
+                    class="form-control"
+                    formControlName="NetworkPassword"
+                    name="name"
+                    required
+                  />
+                </div>
+                <div
+                  *ngIf="submitted3 && MyNetworkFormHas.NetworkPassword?.errors"
+                >
+                  <small
+                    *ngIf="MyNetworkFormHas.NetworkPassword.errors?.required"
+                    class="text-danger"
+                  >
+                    Network Password is Required
+                  </small>
+                </div>
+  
+                <div class="form-group rounded-15">
+                  <label for="">My Devices</label>
+                  <div>
+                    <span *ngFor="let ele of DeviceArr"
+                      >{{ ele.ip }} {{ ele.hostname }}</span
+                    >
+                  </div>
+                </div>
+                <div *ngIf="submitted3 && MyNetworkFormHas.MyDevice?.errors">
+                  <small
+                    *ngIf="MyNetworkFormHas.MyDevice.errors?.required"
+                    class="text-danger"
+                  >
+                    My Devices is Required
+                  </small>
+                </div>
+  
+                <div class="">
+                  <button type="submit" class="btn btn-success float-left">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group> -->
   

@@ -1,27 +1,68 @@
-<app-differ-nav-bar></app-differ-nav-bar>
-
-<div class="row mt-5 mb-5 title">
-    <div class="col-md-6 mx-auto">
-        <div class="card rounded-20">
-            <div class="card-header">
-                <h3 class="mb-0">{{ address }}</h3>
-            </div>
+<div class="d-flex justify-content-start align-items-center flex-column h-100">
+    <p class="medium-text mb-4">Services</p>
+    <p class="faded-small-text mb-2">Your Address</p>
+    <p class="small-text">{{ address }}</p>
+    <div class="row g-4 card-box">
+      <div class="col" *ngFor="let element of serviceItemList">
+        <div class="card">
+          <p class="card-title">Service Title</p>
+          <ul class="card-items-list">
+            <li class="item">{{ element.item_price.name }}</li>
+            <li class="item">{{ element.item_price.status }}</li>
+            <li class="item">here is a feature included</li>
+          </ul>
+          <button
+            type="button"
+            class="btn btn-light mt-4"
+            (click)="handleServiceClick(element)"
+          >
+            Order
+          </button>
         </div>
+      </div>
+      <!-- <div class="col">
+        <div class="card">
+          <p class="card-title">Service Title</p>
+          <p class="price-text">$99</p>
+          <ul class="card-items-list">
+            <li class="item">list of service options</li>
+            <li class="item">this is another one</li>
+            <li class="item">here is a feature included</li>
+          </ul>
+          <button type="button" class="btn btn-light mt-4">Order</button>
+        </div>
+      </div> -->
     </div>
-</div>
-
-<div class="row center-service-list ">
-    <div class="col-4 mb-4  " *ngFor="let element of serviceItemList">
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">Service Title</h5>
-              <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-              <p class="card-text">- {{ element.item_price.name }}.</p>
-              <p class="card-text">- {{ element.item_price.status }}.</p>
-              <p class="card-text">- here is a feature included.</p>
-              <button type="button" (click)="handleServiceClick(element)" class="card-link btn btn-info">Order</button>
-            </div>
-          </div>
+  </div>
+  
+  <!-- <div class="row mt-5 mb-5 title">
+    <div class="col-md-6 mx-auto">
+      <div class="card rounded-20">
+        <div class="card-header">
+          <h3 class="mb-0">{{ address }}</h3>
+        </div>
+      </div>
     </div>
-</div>
-
+  </div>
+  
+  <div class="row center-service-list">
+    <div class="col-4 mb-4" *ngFor="let element of serviceItemList">
+      <div class="card" style="width: 18rem">
+        <div class="card-body">
+          <h5 class="card-title">Service Title</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p class="card-text">- {{ element.item.name }}.</p>
+          <p class="card-text">- {{ element.item.status }}.</p>
+          <p class="card-text">- here is a feature included.</p>
+          <button
+            type="button"
+            (click)="handleServiceClick(element)"
+            class="card-link btn btn-info"
+          >
+            Order
+          </button>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  

@@ -1,31 +1,81 @@
-<app-differ-nav-bar></app-differ-nav-bar>
-
-<div class="row mt-5 title">
-    <div class="col-md-6 mx-auto">
-        <div class="card rounded-20">
-            <div class="card-header">
-                <h3 class="mb-0">Enter the code that was sent to your email address</h3>
-            </div>
-            <div class="card-body text-center">
-                
-                <form [formGroup]="signupVerifyForm" (ngSubmit)="handleSubmit()" class="form">
-                    <div class="row">
-                        <div class="form-group col-sm-2" *ngFor="let input of formInput;  index as i">
-                            <input type="text" #formRow class="form-control" formControlName="{{input}}" maxlength="1" name="emailOTP" (keyup)="keyUpEvent($event, i)" required>
-                        </div>
-                    </div>
-                     <!-- <div *ngIf="submitted && signupVerifyFormHas.emailOTP?.errors">
-                         <small *ngIf="signupVerifyFormHas.emailOTP.errors?.required" class="text-danger" > OTP is Required </small>
-                         <small *ngIf="signupVerifyFormHas.emailOTP.errors?.min" class="text-danger" > OTP need to be 6 digit </small>
-                         <small *ngIf="signupVerifyFormHas.emailOTP.errors?.max" class="text-danger" > OTP need to be 6 digit</small>
-                     </div> -->
-
-                    <div class="">  
-                        <button type="submit" class="btn btn-success">Verify</button>
-                        <a routerLink="/differ-signup-verify" class="text-center float-right">didn't receive your code? </a>
-                    </div>
-                </form>
-            </div>
+<div class="d-flex justify-content-center align-items-center flex-column h-100">
+    <p class="medium-text">
+      Enter the code that was sent to<br />your email address
+    </p>
+    <form
+      [formGroup]="signupVerifyForm"
+      (ngSubmit)="handleSubmit()"
+      class="form signup-verify"
+    >
+      <div class="d-flex flex-row">
+        <div class="form-group" *ngFor="let input of formInput; index as i">
+          <input
+            type="text"
+            class="form-control"
+            name="emailOTP"
+            formControlName="{{ input }}"
+            maxlength="1"
+            (keyup)="keyUpEvent($event, i)"
+            #formRow
+          />
         </div>
+      </div>
+      <button class="btn btn-success w-100" type="submit">Verify</button>
+      <div class="text-center mt-4">
+        <a routerLink="/differ-signup-verify" class="link"
+          >didn't receive your code?
+        </a>
+      </div>
+    </form>
+  </div>
+  
+  <!-- <div class="row mt-5 title">
+    <div class="col-md-6 mx-auto">
+      <div class="card rounded-20">
+        <div class="card-header">
+          <h3 class="mb-0">Enter the code that was sent to your email address</h3>
+        </div>
+        <div class="card-body text-center">
+          <form
+            [formGroup]="signupVerifyForm"
+            (ngSubmit)="handleSubmit()"
+            class="form"
+          >
+            <div class="row">
+              <div
+                class="form-group col-sm-2"
+                *ngFor="let input of formInput; index as i"
+              >
+                <input
+                  type="text"
+                  #formRow
+                  class="form-control"
+                  formControlName="{{ input }}"
+                  maxlength="1"
+                  name="emailOTP"
+                  (keyup)="keyUpEvent($event, i)"
+                  required
+                />
+              </div>
+            </div> -->
+  
+  <!-- <div *ngIf="submitted && signupVerifyFormHas.emailOTP?.errors">
+                           <small *ngIf="signupVerifyFormHas.emailOTP.errors?.required" class="text-danger" > OTP is Required </small>
+                           <small *ngIf="signupVerifyFormHas.emailOTP.errors?.min" class="text-danger" > OTP need to be 6 digit </small>
+                           <small *ngIf="signupVerifyFormHas.emailOTP.errors?.max" class="text-danger" > OTP need to be 6 digit</small>
+                       </div> -->
+  
+  <!-- <div class="">
+              <button type="submit" class="btn btn-success">Verify</button>
+              <a
+                routerLink="/differ-signup-verify"
+                class="text-center float-right"
+                >didn't receive your code?
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-</div>
+  </div> -->
+  

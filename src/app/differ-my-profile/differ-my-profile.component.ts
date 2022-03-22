@@ -15,7 +15,7 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-differ-my-profile',
   templateUrl: './differ-my-profile.component.html',
-  styleUrls: ['./differ-my-profile.component.css']
+  styleUrls: []
 })
 export class DifferMyProfileComponent implements OnInit {
 
@@ -30,6 +30,7 @@ export class DifferMyProfileComponent implements OnInit {
   DeviceArr:any = [];
   formattedDate:any;
   profileInfo : any;
+  subscriptionInfo:any;
 
   ngOnInit(): void {
     this.myProfileForm = new FormGroup({
@@ -53,6 +54,7 @@ export class DifferMyProfileComponent implements OnInit {
 
     this.getNetworkInfo();
     this.getProfileInfo();
+    this.getSubscriptionInfo();
   }
 
   get myProfileFormHas(): { [key: string]: AbstractControl } {
@@ -166,6 +168,21 @@ export class DifferMyProfileComponent implements OnInit {
         serviceAddress: sessionStorage.getItem('address') ,
         birthday : new Date(this.formattedDate[0]+'/'+this.formattedDate[1]+'/'+this.formattedDate[2])
       });
+    }, 
+    (err:any) => {
+      console.log(err,"error");
+    });
+  }
+
+
+  getSubscriptionInfo() {
+    this.differServiceList.differGetSubscriptionList().subscribe((result:any) => {
+      if(result['code'] == 200) {
+        this.subscriptionInfo = result.data;
+      }
+      else {
+        this.subscriptionInfo = [];
+      }
     }, 
     (err:any) => {
       console.log(err,"error");
