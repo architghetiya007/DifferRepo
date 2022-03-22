@@ -57,7 +57,6 @@ export class DifferServiceAddressComponent implements OnInit {
   }
   
   cityChange(event:any) {
-    console.log(event.target.value,"event>>>>>>");
     this.serviceAddressForm.patchValue({
       city : event.target.value
     })

@@ -336,7 +336,6 @@
           <table class="table table-borderless">
             <thead>
               <tr>
-                <th scope="col">#</th>
                 <th scope="col">Subscription</th>
                 <th scope="col">Address</th>
                 <th scope="col">Billing Details</th>
@@ -345,14 +344,13 @@
             </thead>
             <tbody>
               <tr *ngFor="let element of subscriptionInfo">
-                <th scope="row">1</th>
                 <td>{{ element.subscription.subscription_items[0].item_price_id}}</td>
                 <td>{{ element.customer.billing_address.line1}}</td>
                 <td>
                   <p>{{ element.card.masked_number}}</p>
                 </td>
                 <td>
-                  <button
+                  <button (click)="manageSubscription(element)"
                     type="button"
                     class="btn btn-light mb-2 me-2"
                     data-bs-toggle="tooltip"
@@ -361,7 +359,7 @@
                   >
                     <i class="fa-solid fa-money-check"></i>
                   </button>
-                  <button
+                  <button (click)="changeBillingDetail(element)"
                     type="button" 
                     class="btn btn-light mb-2"
                     data-bs-toggle="tooltip"

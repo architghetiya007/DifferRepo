@@ -55,7 +55,6 @@ export class DifferCustomerInformationComponent implements OnInit {
     if (this.InformationForm.invalid) {
       return;
     }
-    console.log(this.InformationForm.value);
  
     sessionStorage.setItem('birthday',this.InformationForm.value.birthday);
     sessionStorage.setItem('firstName',this.InformationForm.value.firstName);

@@ -19,7 +19,6 @@ export class CheckoutComponent implements OnInit {
       price_id: sessionStorage.getItem('selectedId')
     }
     this.differServiceList.differCheckOut(reqObj).subscribe((result:any) => {
-      console.log(result,"result");
       if(result['code'] == 200 ) {
         window.location.href= result.data.hosted_page.url
       }

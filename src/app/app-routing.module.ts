@@ -9,6 +9,7 @@ import { DifferServiceListComponent } from './differ-service-list/differ-service
 import { DifferSignupVerifyComponent } from './differ-signup-verify/differ-signup-verify.component';
 import { DifferSignupComponent } from './differ-signup/differ-signup.component';
 import { RouteGuard } from './route.guard';
+import { MasterComponent } from './layouts/master/master.component';
 
 const routes: Routes = [
   {
@@ -17,36 +18,41 @@ const routes: Routes = [
     redirectTo:'/differ-service-address',
   },
   {
-    path: 'differ-service-address',
-    component: DifferServiceAddressComponent,
-  },
-  {
-    path: 'differ-service-list',
-    component: DifferServiceListComponent,
-  },
-  {
-    path: 'differ-signup',
-    component: DifferSignupComponent,
-  },
-  {
-    path: 'differ-signup-verify',
-    component: DifferSignupVerifyComponent,
-  },
-  {
-    path: 'differ-customer-information',
-    component: DifferCustomerInformationComponent,
-  },
-  {
-    path: 'differ-my-profile',
-    component: DifferMyProfileComponent,
-    canActivate: [RouteGuard]
-  },
-  {
-    path: 'differ-checkout',
-    component: CheckoutComponent,
-    canActivate: [RouteGuard]
-  },
-
+    path : '',
+    component: MasterComponent,
+    children: [
+      {
+        path: 'differ-service-address',
+        component: DifferServiceAddressComponent,
+      },
+      {
+        path: 'differ-service-list',
+        component: DifferServiceListComponent,
+      },
+      {
+        path: 'differ-signup',
+        component: DifferSignupComponent,
+      },
+      {
+        path: 'differ-signup-verify',
+        component: DifferSignupVerifyComponent,
+      },
+      {
+        path: 'differ-customer-information',
+        component: DifferCustomerInformationComponent,
+      },
+      {
+        path: 'differ-my-profile',
+        component: DifferMyProfileComponent,
+        canActivate: [RouteGuard]
+      },
+      {
+        path: 'differ-checkout',
+        component: CheckoutComponent,
+        canActivate: [RouteGuard]
+      },
+    ]
+  }
 ];
 
 @NgModule({

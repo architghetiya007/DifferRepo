@@ -46,7 +46,6 @@ export class DifferSignupComponent implements OnInit {
       email: this.signupForm.value.email,
     }
     this.differServiceList.differCreateCustomer(reqData).subscribe(async (result:any) => {
-      console.log(result,"result>>>>>>>>>>>>>>>>>");
       if(result['code'] == 201 ) {
         this.router.navigate(['/differ-customer-information']);
       }

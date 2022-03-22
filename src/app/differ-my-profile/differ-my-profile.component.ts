@@ -83,7 +83,6 @@ export class DifferMyProfileComponent implements OnInit {
       birthday: this.myProfileForm.value.birthday,
     };
     this.differServiceList.differCustomerInformation(reqData).subscribe((result:any) => {
-      console.log(result,"result>>>>>>>>");
       if(result['code'] == 200) {
         swal.fire("profile update successfully...");
       }
@@ -166,7 +165,7 @@ export class DifferMyProfileComponent implements OnInit {
         firstName: result.data.first_name ,
         lastName: result.data.last_name ,
         serviceAddress: sessionStorage.getItem('address') ,
-        birthday : new Date(this.formattedDate[0]+'/'+this.formattedDate[1]+'/'+this.formattedDate[2])
+        birthday : new Date(this.formattedDate[2]+'/'+this.formattedDate[1]+'/'+this.formattedDate[0])
       });
     }, 
     (err:any) => {
@@ -182,6 +181,38 @@ export class DifferMyProfileComponent implements OnInit {
       }
       else {
         this.subscriptionInfo = [];
+      }
+    }, 
+    (err:any) => {
+      console.log(err,"error");
+    });
+  }
+
+  changeBillingDetail(element:any) {
+    let reqObj = {
+      gatewayAccountId:element.card.gateway_account_id,
+      customerId:element.card.customer_id
+     }
+     
+     this.differServiceList.differChangebillingDetail(reqObj).subscribe((result:any) => {
+      if(result['code'] == 200 ) {
+        window.location.href= result.data.hosted_page.url
+      }
+    }, 
+    (err:any) => {
+      console.log(err,"error");
+    });
+  }
+
+  manageSubscription(element:any) {
+     let reqObj = {
+      subscriptionId:element.subscription.id,
+      itemPriceId:element.subscription.subscription_items[0].item_price_id
+     }
+     
+     this.differServiceList.differChangeSubscription(reqObj).subscribe((result:any) => {
+      if(result['code'] == 200 ) {
+        window.location.href= result.data.hosted_page.url
       }
     }, 
     (err:any) => {
