@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="master-box">
+    <nav class="navbar navbar-light">
+      <a
+        class="navbar-brand"
+        href="javascript:void(0)"
+        routerLink="differ-service-address"
+        >DIFFER</a
+      >
+      <a class="logout-btn" href="javascript:void(0)" *ngIf="loggedIn"
+        ><i class="fa-solid fa-right-from-bracket"></i
+      ></a>
+    </nav>
+    <div class="logout" *ngIf="loggedIn">
+      <a
+        class="logout-btn"
+        href="javascript:void(0)"
+        routerLink="differ-service-address"
+        ><i class="fa-solid fa-right-from-bracket"></i
+      ></a>
+    </div>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

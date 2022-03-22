@@ -27,6 +27,7 @@ import { DifferCustomerInformationComponent } from './differ-customer-informatio
 import { DifferNavBarComponent } from './differ-nav-bar/differ-nav-bar.component';
 import { DifferMyProfileComponent } from './differ-my-profile/differ-my-profile.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { MasterComponent } from './layouts/master/master.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     DifferNavBarComponent,
     DifferMyProfileComponent,
     CheckoutComponent,
+    MasterComponent
   ],
   imports: [
     BrowserModule,
