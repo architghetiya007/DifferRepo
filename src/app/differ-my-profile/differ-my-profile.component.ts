@@ -31,6 +31,7 @@ export class DifferMyProfileComponent implements OnInit {
   formattedDate:any;
   profileInfo : any;
   subscriptionInfo:any;
+  externalLink:any = null;
 
   ngOnInit(): void {
     this.myProfileForm = new FormGroup({
@@ -196,7 +197,8 @@ export class DifferMyProfileComponent implements OnInit {
      
      this.differServiceList.differChangebillingDetail(reqObj).subscribe((result:any) => {
       if(result['code'] == 200 ) {
-        window.location.href= result.data.hosted_page.url
+        // window.location.href= result.data.hosted_page.url;
+        this.externalLink = result.data.hosted_page.url;
       }
     }, 
     (err:any) => {
@@ -212,7 +214,8 @@ export class DifferMyProfileComponent implements OnInit {
      
      this.differServiceList.differChangeSubscription(reqObj).subscribe((result:any) => {
       if(result['code'] == 200 ) {
-        window.location.href= result.data.hosted_page.url
+        // window.location.href = result.data.hosted_page.url
+        this.externalLink = result.data.hosted_page.url;
       }
     }, 
     (err:any) => {

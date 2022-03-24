@@ -374,6 +374,12 @@
             </tbody>
           </table>
         </div>
+        <div class="iframe-box mt-5 pt-5" *ngIf="externalLink">
+          <button type="button" class="btn btn-light iframe-cancel-btn" (click)="externalLink = null;"><i class="fa-solid fa-xmark"></i></button>
+          <div class="ratio ratio-16x9 mt-3">
+            <iframe [src]="externalLink | safe" allowfullscreen></iframe>
+          </div>
+        </div>
       </div>
       <div
         class="tab-pane fade"

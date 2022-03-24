@@ -10,8 +10,12 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private differServiceList:DifferServiceList) {
   }
+
+  elementName:any;
  
   ngOnInit() {
+    this.elementName = sessionStorage.getItem('selectedId')
+    console.log(this.elementName)
   }
 
   openCheckout() {

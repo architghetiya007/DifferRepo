@@ -631,6 +631,16 @@
     top: 0;
     background-color: #1d1d1f;
   }
+
+  .iframe-box {
+    position: relative;
+  }
+
+  .iframe-box .iframe-cancel-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
   /* Differ Profile End */
   
   /* Differ Checkout Start */

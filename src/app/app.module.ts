@@ -28,6 +28,7 @@ import { DifferNavBarComponent } from './differ-nav-bar/differ-nav-bar.component
 import { DifferMyProfileComponent } from './differ-my-profile/differ-my-profile.component';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { MasterComponent } from './layouts/master/master.component';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { MasterComponent } from './layouts/master/master.component';
     DifferNavBarComponent,
     DifferMyProfileComponent,
     CheckoutComponent,
-    MasterComponent
+    MasterComponent,
+    SafePipe
   ],
   imports: [
     BrowserModule,
