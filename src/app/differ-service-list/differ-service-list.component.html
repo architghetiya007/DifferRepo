@@ -5,11 +5,11 @@
     <div class="row g-4 card-box">
       <div class="col" *ngFor="let element of serviceItemList">
         <div class="card">
-          <p class="card-title">Service Title</p>
+          <p class="card-title">{{ element.item_price.name }}</p>
           <ul class="card-items-list">
-            <li class="item">{{ element.item_price.name }}</li>
-            <li class="item">{{ element.item_price.status }}</li>
-            <li class="item">here is a feature included</li>
+            <li class="item">{{ element.item_price.external_name }}</li>
+            <li class="item">${{ element.item_price.price }}</li>
+            <li class="item">{{ element.item_price.period_unit }}</li>
           </ul>
           <button
             type="button"
