@@ -5,6 +5,7 @@
       (ngSubmit)="handleSubmit()"
       class="form customer-info"
     >
+    <label for="">First Name</label>
       <input
         type="text"
         class="form-control"
@@ -63,6 +64,7 @@
         </div>
       </div>
   
+    <label for="">Last Name</label>
       <input
         type="text"
         class="form-control"
@@ -120,11 +122,12 @@
           ></button>
         </div>
       </div>
-  
+
+      <label for="">Email Address</label>
       <input
         type="email"
         class="form-control"
-        name="email"
+        name="email" readonly
         formControlName="email"
         placeholder="Email Address"
       />
@@ -194,6 +197,7 @@
         </div>
       </div>
   
+      <label for="">Password</label>
       <input
         type="password"
         class="form-control"
@@ -252,6 +256,7 @@
         </div>
       </div>
   
+      <label for="">BirthDate</label>
       <input
         type="date"
         class="form-control"
@@ -279,10 +284,11 @@
           ></button>
         </div>
       </div>
-  
-      <textarea
+
+      <label for="">Address</label>
+      <textarea 
         class="form-control"
-        name="serviceAddress"
+        name="serviceAddress" readonly
         formControlName="serviceAddress"
         placeholder="Service Address"
         rows="3"

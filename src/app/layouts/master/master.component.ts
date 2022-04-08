@@ -21,4 +21,8 @@ export class MasterComponent implements OnInit {
     this.router.navigate(['differ-service-address']);
     this.loggedIn = '';
   } 
+
+  login() {
+    this.router.navigate(['/differ-customer-information'])
+  }
 }
