@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DifferServiceList } from "./../differ-service-list/differ-service-list.service";
 // import { AuthService } from './../register/auth.service';
 import swal from 'sweetalert2';
 
@@ -23,7 +24,7 @@ export class DifferServiceAddressComponent implements OnInit {
   @ViewChild('address') viewChildAddress:any;
   @ViewChild('city') viewChildCity:any;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private differServiceList:DifferServiceList) { }
 
   ngOnInit(): void {
     this.serviceAddressForm = new FormGroup({
@@ -40,20 +41,34 @@ export class DifferServiceAddressComponent implements OnInit {
   handleSubmit() {
     this.submitted = true;
 
+    
     this.serviceAddressForm.patchValue({
       address: this.viewChildAddress.nativeElement.value,
       city: this.viewChildCity.nativeElement.value
     });
-
+    
     if (this.serviceAddressForm.invalid) {
       return;
     }
-
+    
     this.fullAddress = this.serviceAddressForm.value.address + ' '+ this.serviceAddressForm.value.city;
-
-    sessionStorage.removeItem('address') 
-    sessionStorage.setItem("address",this.fullAddress);
-    this.router.navigate(['/differ-service-list']);
+    let reqObj = {
+      address : this.fullAddress 
+    };
+    this.differServiceList.differCheckAddress(reqObj).subscribe( (result:any) => {
+      if(result['code'] == 200) {
+        sessionStorage.removeItem('address') 
+        sessionStorage.setItem("address",this.fullAddress);
+        this.router.navigate(['/differ-service-list']);      
+      } else {
+        swal.fire("Our service is not available at your address");
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      }
+    },(err:any) => {
+      console.log(err,"error");
+    })
   }
   
   cityChange(event:any) {

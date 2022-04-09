@@ -1,23 +1,36 @@
-
 <div class="container-fluid">
   <div class="master-box">
-    
     <nav class="navbar navbar-light">
-      <button (click)="login()">Login</button>
       <a
         class="navbar-brand"
         href="javascript:void(0)"
         routerLink="differ-service-address"
         >DIFFER</a
       >
-      <a class="logout-btn" href="javascript:void(0)" *ngIf="loggedIn"
+      <a
+        class="login-btn"
+        routerLink="differ-customer-information"
+        href="javascript:void(0)"
+        *ngIf="!loggedIn"
+        title="Login"
+        ><i class="fa-solid fa-right-to-bracket"></i
+      ></a>
+      <a
+        class="logout-btn"
+        (click)="logout()"
+        href="javascript:void(0)"
+        *ngIf="loggedIn"
+        title="Logout"
         ><i class="fa-solid fa-right-from-bracket"></i
       ></a>
     </nav>
+    <div class="login" *ngIf="!loggedIn">
+      <a class="login-btn" routerLink="differ-customer-information"
+        ><i class="fa-solid fa-right-to-bracket"></i
+      ></a>
+    </div>
     <div class="logout" *ngIf="loggedIn">
-      <a (click)="logout()"
-        class="logout-btn"
-        href="javascript:void(0)"
+      <a (click)="logout()" class="logout-btn" href="javascript:void(0)"
         ><i class="fa-solid fa-right-from-bracket"></i
       ></a>
     </div>

@@ -60,5 +60,10 @@ export class DifferServiceList {
     return this.http.get("http://localhost:3000/api/v1/auth/chargebee-subscription-list");
   }
 
+  differCheckAddress(data:any) {
+    return this.http.post("http://localhost:3000/api/v1/auth/chargebee-address-compare",data);
+  }
+
+
 
 }
