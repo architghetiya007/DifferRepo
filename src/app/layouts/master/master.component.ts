@@ -20,9 +20,5 @@ export class MasterComponent implements OnInit {
     sessionStorage.clear();
     this.router.navigate(['differ-service-address']);
     this.loggedIn = '';
-  } 
-
-  login() {
-    this.router.navigate(['/differ-customer-information'])
   }
 }
