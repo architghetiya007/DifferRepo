@@ -24,9 +24,11 @@ export class DifferMyProfileComponent implements OnInit {
   myProfileForm!: FormGroup;
   mySubscriptionForm!: FormGroup;
   MyNetworkForm!: FormGroup;
+  changePassword!: FormGroup;
   submitted1 = false;
   submitted2 = false;
   submitted3 = false;
+  submitted4 = false;
   DeviceArr:any = [];
   formattedDate:any;
   profileInfo : any;
@@ -37,9 +39,12 @@ export class DifferMyProfileComponent implements OnInit {
     this.myProfileForm = new FormGroup({
       firstName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30) ]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30) ]),
-      password: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(15) ]),
       serviceAddress: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70) ]),
       birthday: new FormControl('', [Validators.required ]),
+    });
+
+    this.changePassword = new FormGroup({
+      password: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(15) ]),
     });
 
     this.mySubscriptionForm = new FormGroup({
@@ -70,6 +75,10 @@ export class DifferMyProfileComponent implements OnInit {
     return this.MyNetworkForm.controls;
   }
 
+  get ChangePasswordFormHas(): { [key: string]: AbstractControl } {
+    return this.changePassword.controls;
+  }
+
   handleSubmit1() {
     this.submitted1 = true;
     if (this.myProfileForm.invalid) {
@@ -79,11 +88,10 @@ export class DifferMyProfileComponent implements OnInit {
       email:sessionStorage.getItem('email'),
       firstName: this.myProfileForm.value.firstName,
       lastName: this.myProfileForm.value.lastName,
-      password: this.myProfileForm.value.password,
       serviceAddress: this.myProfileForm.value.serviceAddress,
       birthday: this.myProfileForm.value.birthday,
     };
-    this.differServiceList.differCustomerInformation(reqData).subscribe((result:any) => {
+    this.differServiceList.differUpdateProfile(reqData).subscribe((result:any) => {
       if(result['code'] == 200) {
         swal.fire("profile update successfully...");
       }
@@ -127,6 +135,23 @@ export class DifferMyProfileComponent implements OnInit {
     });
 
 
+  }
+
+  handleSubmitChangePassword() {
+    this.submitted4 = true;
+    if (this.changePassword.invalid) {
+      return;
+    }
+    let reqData = {
+      password : this.changePassword.value.password
+    }
+    this.differServiceList.differUpdateProfile(reqData).subscribe((result:any) => {
+      if(result['code'] == 200) {
+        swal.fire("Password change successfully...");
+      }
+    },(err:any) => {
+      console.log(err,"error");
+    });
   }
 
   convertDate(str:any) {

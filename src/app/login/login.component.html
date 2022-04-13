@@ -1,0 +1,111 @@
+
+
+<div class="d-flex justify-content-center align-items-center flex-column h-100">
+    <p class="medium-text">
+      Enter your Login Details
+    </p>
+    <form
+      [formGroup]="loginForm"
+      (ngSubmit)="handleSubmit()"
+      class="form signup"
+    >
+      <label for="">Email Address</label>
+      <input
+        type="email"
+        class="form-control"
+        name="email"
+        formControlName="email"
+        placeholder="Enter Your Email Address"
+      />
+      <div class="error-box" *ngIf="submitted && loginFormHas.email?.errors">
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+          *ngIf="loginFormHas.email.errors?.required"
+        >
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span class="error-text">Email Address is Required</span>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+            (click)="submitted = false; loginForm.reset();"
+          ></button>
+        </div>
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+          *ngIf="loginFormHas.email.errors?.minlength"
+        >
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span class="error-text">Email Address between 5 to 70 characters</span>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+            (click)="submitted = false; loginForm.reset();"
+          ></button>
+        </div>
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+          *ngIf="loginFormHas.email.errors?.maxlength"
+        >
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span class="error-text">Email Address between 5 to 70 characters</span>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+            (click)="submitted = false; loginForm.reset()"
+          ></button>
+        </div>
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+          *ngIf="loginFormHas.email.errors?.pattern"
+        >
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span class="error-text">Email Address is not valid</span>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+            (click)="submitted = false; loginForm.reset()"
+          ></button>
+        </div>
+      </div>
+
+
+      <label for="">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="password"
+        formControlName="password"
+        placeholder="Enter Your Password"
+      />
+      <div class="error-box" *ngIf="submitted && loginFormHas.password?.errors">
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+          *ngIf="loginFormHas.password.errors?.required"
+        >
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span class="error-text">Password is Required</span>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+            (click)="submitted = false;loginForm.reset()"
+          ></button>
+        </div>
+      </div>
+      <button class="btn w-100" type="submit">Next</button>
+    </form>
+  </div>

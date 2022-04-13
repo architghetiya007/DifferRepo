@@ -176,64 +176,6 @@
           </div>
   
           <input
-            type="password"
-            class="form-control"
-            name="password"
-            formControlName="password"
-            placeholder="Password"
-          />
-          <div
-            class="error-box"
-            *ngIf="submitted1 && myProfileFormHas.password?.errors"
-          >
-            <div
-              class="alert alert-danger alert-dismissible fade show"
-              role="alert"
-              *ngIf="myProfileFormHas.password.errors?.required"
-            >
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <span class="error-text">Password is Required</span>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="alert"
-                aria-label="Close"
-                (click)="submitted1 = false; myProfileForm.reset()"
-              ></button>
-            </div>
-            <div
-              class="alert alert-danger alert-dismissible fade show"
-              role="alert"
-              *ngIf="myProfileFormHas.password.errors?.minlength"
-            >
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <span class="error-text">Password between 5 to 15 characters</span>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="alert"
-                aria-label="Close"
-                (click)="submitted1 = false; myProfileForm.reset()"
-              ></button>
-            </div>
-            <div
-              class="alert alert-danger alert-dismissible fade show"
-              role="alert"
-              *ngIf="myProfileFormHas.password.errors?.maxlength"
-            >
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <span class="error-text">Password between 5 to 15 characters</span>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="alert"
-                aria-label="Close"
-                (click)="submitted1 = false; myProfileForm.reset()"
-              ></button>
-            </div>
-          </div>
-  
-          <input
             type="date"
             class="form-control"
             name="birthday"
@@ -325,6 +267,74 @@
   
           <button class="btn w-100 mb-2" type="submit">Submit</button>
         </form>
+
+        <form
+        [formGroup]="changePassword"
+        (ngSubmit)="handleSubmitChangePassword()"
+        class="form customer-info"
+      >
+         
+        <h2 class="text-center m-5">change password</h2>
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          formControlName="password"
+          placeholder="Password"
+        />
+        <div
+          class="error-box"
+          *ngIf="submitted4 && ChangePasswordFormHas.password?.errors"
+        >
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+            *ngIf="ChangePasswordFormHas.password.errors?.required"
+          >
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span class="error-text">Password is Required</span>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+              (click)="submitted4 = false; changePassword.reset()"
+            ></button>
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+            *ngIf="ChangePasswordFormHas.password.errors?.minlength"
+          >
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span class="error-text">Password between 5 to 15 characters</span>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+              (click)="submitted4 = false; changePassword.reset()"
+            ></button>
+          </div>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+            *ngIf="ChangePasswordFormHas.password.errors?.maxlength"
+          >
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span class="error-text">Password between 5 to 15 characters</span>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+              (click)="submitted4 = false; changePassword.reset()"
+            ></button>
+          </div>
+        </div>
+
+        <button class="btn w-100 mb-2" type="submit">Submit</button>
+      </form>
       </div>
       <div
         class="tab-pane fade"

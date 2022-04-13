@@ -29,6 +29,7 @@ import { DifferMyProfileComponent } from './differ-my-profile/differ-my-profile.
 import { CheckoutComponent } from './checkout/checkout.component';
 import { MasterComponent } from './layouts/master/master.component';
 import { SafePipe } from './safe.pipe';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { SafePipe } from './safe.pipe';
     DifferMyProfileComponent,
     CheckoutComponent,
     MasterComponent,
-    SafePipe
+    SafePipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -47,7 +47,7 @@ export class DifferSignupComponent implements OnInit {
     }
     this.differServiceList.differCreateCustomer(reqData).subscribe(async (result:any) => {
       if(result['code'] == 201 ) {
-        this.router.navigate(['/differ-customer-information']);
+        this.router.navigate(['/login']);
       }
       if(result['code'] == 200 || result['code'] == 204) {
         this.customer = result['data'];

@@ -10,6 +10,7 @@ import { DifferSignupVerifyComponent } from './differ-signup-verify/differ-signu
 import { DifferSignupComponent } from './differ-signup/differ-signup.component';
 import { RouteGuard } from './route.guard';
 import { MasterComponent } from './layouts/master/master.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
       {
         path: 'differ-signup',
         component: DifferSignupComponent,
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
       },
       {
         path: 'differ-signup-verify',

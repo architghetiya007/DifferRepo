@@ -24,6 +24,14 @@ export class DifferServiceList {
     return this.http.put("http://localhost:3000/api/v1/auth/chargebee-save-user-detail",data);
   }
 
+  differUpdateProfile(data:any) {
+    return this.http.put("http://localhost:3000/api/v1/auth/update-profile",data);
+  }
+
+  login(data:any) {
+    return this.http.post("http://localhost:3000/api/v1/auth/differ-login",data);
+  }
+
   differGetNetworkInfo(data:any) {
     return this.http.put("http://localhost:3000/api/v1/auth/chargebee-network",data);
   }
