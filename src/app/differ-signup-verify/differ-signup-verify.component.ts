@@ -78,7 +78,6 @@ export class DifferSignupVerifyComponent implements OnInit {
     }
 
     this.FULL_OTP = this.OTP.join('');
-    console.log(this.FULL_OTP);
     
     let reqData = {
       email:sessionStorage.getItem('email'),

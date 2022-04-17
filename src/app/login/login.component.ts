@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit {
       password: this.loginForm.value.password,
     };
     this.differServiceList.login(reqData).subscribe((result: any) => {
-      console.log("result>>>>>>>>>>>>>>>",result);
       if (result['code'] == 200) {
         sessionStorage.setItem('token', result.data.token);
         this.router.navigate(['/differ-checkout']);
