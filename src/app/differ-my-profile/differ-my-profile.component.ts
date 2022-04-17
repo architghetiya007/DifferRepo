@@ -40,7 +40,7 @@ export class DifferMyProfileComponent implements OnInit {
       firstName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30) ]),
       lastName: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(30) ]),
       serviceAddress: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70) ]),
-      birthday: new FormControl('', [Validators.required ]),
+      // birthday: new FormControl('', [Validators.required ]),
     });
 
     this.changePassword = new FormGroup({
@@ -94,6 +94,7 @@ export class DifferMyProfileComponent implements OnInit {
     this.differServiceList.differUpdateProfile(reqData).subscribe((result:any) => {
       if(result['code'] == 200) {
         swal.fire("profile update successfully...");
+        this.getProfileInfo();
       }
 
     },(err:any) => {
@@ -142,12 +143,15 @@ export class DifferMyProfileComponent implements OnInit {
     if (this.changePassword.invalid) {
       return;
     }
+    console.log(this.changePassword.value,">>>>>>>>>>>");
     let reqData = {
       password : this.changePassword.value.password
     }
-    this.differServiceList.differUpdateProfile(reqData).subscribe((result:any) => {
+    this.differServiceList.changePassword(reqData).subscribe((result:any) => {
       if(result['code'] == 200) {
         swal.fire("Password change successfully...");
+        this.submitted4 = false; 
+        this.changePassword.reset();
       }
     },(err:any) => {
       console.log(err,"error");
@@ -190,7 +194,7 @@ export class DifferMyProfileComponent implements OnInit {
       this.myProfileForm.patchValue({
         firstName: result.data.first_name ,
         lastName: result.data.last_name ,
-        serviceAddress: sessionStorage.getItem('address') ,
+        serviceAddress: result.data.cf_address || sessionStorage.getItem('address') ,
         birthday : new Date(this.formattedDate[2]+'/'+this.formattedDate[1]+'/'+this.formattedDate[0])
       });
     }, 
